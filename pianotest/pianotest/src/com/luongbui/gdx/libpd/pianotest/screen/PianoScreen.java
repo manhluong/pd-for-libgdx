@@ -11,8 +11,8 @@ import com.luongbui.gdx.libpd.pianotest.PianoTest;
 
 public class PianoScreen implements Screen {
 	
-	public static final int WIDTH_VIRTUAL = 2048;
-	public static final int HEIGHT_VIRTUAL = 1154;
+	public static final int WIDTH_VIRTUAL = 1920;
+	public static final int HEIGHT_VIRTUAL = 1080;
 	
 	private final PianoTest game;
 	
