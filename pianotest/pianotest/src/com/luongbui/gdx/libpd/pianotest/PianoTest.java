@@ -16,8 +16,8 @@ public class PianoTest extends Game {
 	
 	@Override
 	public void create() {
-		mainScreen = new PianoScreen(this);
 		inputMux = new InputMultiplexer();
+		mainScreen = new PianoScreen(this);
 		setScreen(mainScreen);
 		}
 	
