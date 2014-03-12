@@ -13,11 +13,11 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 		config.orientationLandscape = true;
 		config.orientationPortrait = false;
 		return new IOSApplication(new PianoTest(), config);
-	}
+		}
 
 	public static void main(String[] argv) {
 		NSAutoreleasePool pool = new NSAutoreleasePool();
 		UIApplication.main(argv, null, RobovmLauncher.class);
 		pool.drain();
+		}
 	}
-}

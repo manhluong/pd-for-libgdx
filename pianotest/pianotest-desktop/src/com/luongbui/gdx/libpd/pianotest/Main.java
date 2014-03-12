@@ -11,5 +11,5 @@ public class Main {
 		cfg.height = 320;
 		
 		new LwjglApplication(new PianoTest(), cfg);
+		}
 	}
-}
