@@ -15,10 +15,7 @@ public class PianoKey extends Actor {
 					float width,
 					float height) {
 		renderer = new ShapeRenderer();
-		setX(x);
-		setY(y);
-		setWidth(width);
-		setHeight(height);
+		setBounds(x, y, width, height);
 		}
 	
 	@Override
