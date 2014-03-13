@@ -5,22 +5,42 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class PianoKey extends Actor {
 	
 	private ShapeRenderer renderer;
 	
+	private boolean isPressed;
+	
 	public PianoKey(float x,
 					float y,
 					float width,
 					float height) {
+		
 		renderer = new ShapeRenderer();
+		isPressed=false;
+		
 		setBounds(x, y, width, height);
+		addListener(new InputListener() {
+			@Override
+		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				isPressed = true;
+				//TODO trig piano bang.
+		    	}
+			
+			@Override
+		    public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				isPressed = false;
+		    	}
+			});
+		
 		}
 	
 	@Override
 	public void act(float delta) {
-		//TODO
+		
 		}
 	
 	@Override
@@ -32,7 +52,10 @@ public class PianoKey extends Actor {
 	    renderer.setTransformMatrix(batch.getTransformMatrix());
 	    renderer.translate(getX(), getY(), 0);
 
-	    renderer.begin(ShapeType.Line);
+	    if(!isPressed)
+	    	renderer.begin(ShapeType.Line);
+	    else
+	    	renderer.begin(ShapeType.Filled);
 	    renderer.setColor(Color.BLACK);
 	    renderer.rect(0, 0, getWidth(), getHeight());
 	    renderer.end();
