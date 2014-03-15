@@ -17,11 +17,22 @@
 package com.luongbui.gdx.libpd.pianotest;
 
 import com.badlogic.gdx.Game;
+import com.luong.gdx.libpd.GdxPD;
 import com.luongbui.gdx.libpd.pianotest.screen.PianoScreen;
 
 public class PianoTest extends Game {
 	
 	private PianoScreen mainScreen;
+	
+	private GdxPD audio;
+	
+	public PianoTest() {
+		audio = null;
+		}
+	
+	public PianoTest(GdxPD pd) {
+		audio = pd;
+		}
 	
 	@Override
 	public void create() {
