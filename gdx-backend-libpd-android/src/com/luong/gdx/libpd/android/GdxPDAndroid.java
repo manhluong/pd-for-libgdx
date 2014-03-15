@@ -1,43 +1,66 @@
 package com.luong.gdx.libpd.android;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.puredata.android.io.AudioParameters;
+import org.puredata.android.io.PdAudio;
+import org.puredata.android.utils.PdUiDispatcher;
+import org.puredata.core.PdBase;
+import org.puredata.core.utils.IoUtils;
+
+import android.content.Context;
+
+import com.badlogic.gdx.Gdx;
 import com.luong.gdx.libpd.GdxPD;
 
 public class GdxPDAndroid implements GdxPD {
+	
+	private Context context;
+	
+	private PdUiDispatcher dispatcher;
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
+	public void init() throws IOException {
+		int sampleRate = AudioParameters.suggestSampleRate();
+		PdAudio.initAudio(sampleRate, 0, 2, 8, true);
+		dispatcher = new PdUiDispatcher();
+		PdBase.setReceiver(dispatcher);
 		}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		PdAudio.release();
+		PdBase.release();
 		}
 
 	@Override
-	public void loadPatch() {
-		// TODO Auto-generated method stub
-		
+	public void loadPatch(String zipName, String patchName) throws IOException {
+		File dir = context.getFilesDir();
+		IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
+		File patchFile = new File(dir, patchName);
+		PdBase.openPatch(patchFile.getAbsolutePath());
 		}
 
 	@Override
 	public void startAudio() {
-		// TODO Auto-generated method stub
-		
+		PdAudio.startAudio(context);
 		}
 
 	@Override
 	public void stopAudio() {
-		// TODO Auto-generated method stub
-		
+		PdAudio.stopAudio();
 		}
 
 	@Override
 	public void sendBang(String bang) {
-		// TODO Auto-generated method stub
-		
+		PdBase.sendBang(bang);
 		}
 
+	/**
+	 * This is specific to Android, of course.
+	 */
+	public void setContext(Context ctx) {
+		context = ctx;
+		}
 	}
