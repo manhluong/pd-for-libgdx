@@ -20,14 +20,39 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.android.GdxPDAndroid;
 
 public class MainActivity extends AndroidApplication {
+	
+	private GdxPD audio;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        audio = new GdxPDAndroid(this);
+        
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         
-        initialize(new PianoTest(), cfg);
+        initialize(new PianoTest(audio), cfg);
+    	}
+    
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    	audio.startAudio();
+    	}
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	audio.stopAudio();
+    	}
+    
+    @Override
+    public void onDestroy() {
+    	super.onDestroy();
+    	audio.dispose();
     	}
 	}

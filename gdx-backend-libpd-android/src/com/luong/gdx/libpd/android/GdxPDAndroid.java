@@ -19,6 +19,10 @@ public class GdxPDAndroid implements GdxPD {
 	private Context context;
 	
 	private PdUiDispatcher dispatcher;
+	
+	public GdxPDAndroid(Context ctx) {
+		context = ctx;
+		}
 
 	@Override
 	public void init() throws IOException {
@@ -55,12 +59,5 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public void sendBang(String bang) {
 		PdBase.sendBang(bang);
-		}
-
-	/**
-	 * This is specific to Android, of course.
-	 */
-	public void setContext(Context ctx) {
-		context = ctx;
 		}
 	}
