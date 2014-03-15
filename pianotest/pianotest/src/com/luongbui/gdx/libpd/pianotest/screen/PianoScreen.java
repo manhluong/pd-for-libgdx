@@ -52,7 +52,8 @@ public class PianoScreen implements Screen {
 			keys[i] = new PianoKey((WIDTH_VIRTUAL/KEYS_NUM)*i,
 									0,
 									WIDTH_VIRTUAL/KEYS_NUM,
-									HEIGHT_VIRTUAL);
+									HEIGHT_VIRTUAL,
+									game);
 			stage.addActor(keys[i]);
 			}
 		Gdx.input.setInputProcessor(stage);

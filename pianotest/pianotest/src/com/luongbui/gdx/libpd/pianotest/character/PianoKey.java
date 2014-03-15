@@ -23,8 +23,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.luongbui.gdx.libpd.pianotest.PianoTest;
 
 public class PianoKey extends Actor {
+	
+	private final PianoTest game;
 	
 	private ShapeRenderer renderer;
 	
@@ -33,10 +36,12 @@ public class PianoKey extends Actor {
 	public PianoKey(float x,
 					float y,
 					float width,
-					float height) {
+					float height,
+					final PianoTest game) {
 		
 		renderer = new ShapeRenderer();
-		isPressed=false;
+		isPressed = false;
+		this.game = game;
 		
 		setBounds(x, y, width, height);
 		addListener(new InputListener() {
