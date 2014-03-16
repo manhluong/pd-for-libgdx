@@ -40,4 +40,7 @@ public class GdxPDIOS implements GdxPD {
 		
 		}
 
+	public void sendFloat(String label, float number) {
+		// TODO
+		}
 	}

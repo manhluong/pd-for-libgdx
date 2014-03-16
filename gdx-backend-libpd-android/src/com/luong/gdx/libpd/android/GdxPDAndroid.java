@@ -60,4 +60,9 @@ public class GdxPDAndroid implements GdxPD {
 	public void sendBang(String bang) {
 		PdBase.sendBang(bang);
 		}
+	
+	@Override
+	public void sendFloat(String label, float number) {
+		PdBase.sendFloat(label, number);
+		}
 	}

@@ -14,4 +14,6 @@ public interface GdxPD {
 	public void stopAudio();
 	
 	public void sendBang(String bang);
+	
+	public void sendFloat(String label, float number);
 	}
