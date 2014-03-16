@@ -48,6 +48,7 @@ public class PianoKey extends Actor {
 			@Override
 		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				isPressed = true;
+				game.getAudioEngine().sendFloat("freq", 440f);
 				game.getAudioEngine().sendBang("trig");
 		    	}
 			
