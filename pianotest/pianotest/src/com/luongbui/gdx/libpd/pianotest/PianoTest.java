@@ -16,6 +16,8 @@
 
 package com.luongbui.gdx.libpd.pianotest;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Game;
 import com.luong.gdx.libpd.GdxPD;
 import com.luongbui.gdx.libpd.pianotest.screen.PianoScreen;
@@ -32,6 +34,12 @@ public class PianoTest extends Game {
 	
 	public PianoTest(GdxPD pd) {
 		audio = pd;
+		try {
+			audio.init();
+			}
+		catch (IOException e) {
+			e.printStackTrace();
+			}
 		}
 	
 	@Override
