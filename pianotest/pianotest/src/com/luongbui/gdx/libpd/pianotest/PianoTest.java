@@ -44,4 +44,8 @@ public class PianoTest extends Game {
 	public void render() {		
 		super.render();
 		}
+	
+	public GdxPD getAudioEngine() {
+		return audio;
+		}
 	}

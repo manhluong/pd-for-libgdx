@@ -48,7 +48,7 @@ public class PianoKey extends Actor {
 			@Override
 		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				isPressed = true;
-				//TODO trig piano bang.
+				game.getAudioEngine().sendBang("trig");
 		    	}
 			
 			@Override
