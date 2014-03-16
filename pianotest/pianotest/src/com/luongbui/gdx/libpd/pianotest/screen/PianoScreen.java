@@ -49,10 +49,10 @@ public class PianoScreen implements Screen {
 		stage = new Stage();
 		keys = new PianoKey[KEYS_NUM];
 		for(int i=0; i<keys.length; i++) {
-			keys[i] = new PianoKey((WIDTH_VIRTUAL/KEYS_NUM)*i,
-									0,
+			keys[i] = new PianoKey(((WIDTH_VIRTUAL/KEYS_NUM)*i)+1,
+									1,
 									WIDTH_VIRTUAL/KEYS_NUM,
-									HEIGHT_VIRTUAL,
+									HEIGHT_VIRTUAL-1,
 									game);
 			stage.addActor(keys[i]);
 			}
