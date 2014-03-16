@@ -10,6 +10,7 @@ import org.puredata.core.PdBase;
 import org.puredata.core.utils.IoUtils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.badlogic.gdx.Gdx;
 import com.luong.gdx.libpd.GdxPD;
@@ -58,11 +59,13 @@ public class GdxPDAndroid implements GdxPD {
 
 	@Override
 	public void sendBang(String bang) {
+		Log.d("sendBang", bang);
 		PdBase.sendBang(bang);
 		}
 	
 	@Override
 	public void sendFloat(String label, float number) {
+		Log.d("sendFloat", label + ": " + number);
 		PdBase.sendFloat(label, number);
 		}
 	}
