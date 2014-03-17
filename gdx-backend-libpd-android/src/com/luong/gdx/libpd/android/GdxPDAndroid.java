@@ -17,9 +17,9 @@ import com.luong.gdx.libpd.GdxPD;
 
 public class GdxPDAndroid implements GdxPD {
 	
-	final private Context context;
+	final protected Context context;
 	
-	private PdUiDispatcher dispatcher;
+	protected PdUiDispatcher dispatcher;
 	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
