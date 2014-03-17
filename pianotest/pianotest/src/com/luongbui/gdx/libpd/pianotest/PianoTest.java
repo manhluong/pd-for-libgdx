@@ -45,6 +45,12 @@ public class PianoTest extends Game {
 	@Override
 	public void create() {
 		mainScreen = new PianoScreen(this);
+		try {
+			audio.loadPatch("piano_test.zip", "piano_test.pd");
+			}
+		catch (IOException e) {
+			e.printStackTrace();
+			}
 		setScreen(mainScreen);
 		}
 	
