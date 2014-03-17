@@ -40,11 +40,14 @@ Thumbs.db
 # Java virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-# Eclipse
+# Eclipse            #
+######################
 #.project
 #.classpath
 .metadata/
 #.settings/
 
-# Android
+# Android            #
+######################
 bin/
+gen/
