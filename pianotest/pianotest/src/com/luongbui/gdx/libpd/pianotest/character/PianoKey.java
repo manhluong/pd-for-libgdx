@@ -33,22 +33,28 @@ public class PianoKey extends Actor {
 	
 	private boolean isPressed;
 	
+	private float hertz;
+	
 	public PianoKey(float x,
 					float y,
 					float width,
 					float height,
+					float hertz,
 					final PianoTest game) {
 		
 		renderer = new ShapeRenderer();
 		isPressed = false;
+		this.hertz = hertz;
 		this.game = game;
+		
+		final PianoKey thisPtr = this;
 		
 		setBounds(x, y, width, height);
 		addListener(new InputListener() {
 			@Override
 		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				isPressed = true;
-				game.getAudioEngine().sendFloat("freq", 440f);
+				game.getAudioEngine().sendFloat("freq", thisPtr.getHertz());
 				game.getAudioEngine().sendBang("trig");
 		    	}
 			
@@ -84,5 +90,9 @@ public class PianoKey extends Actor {
 
 	    batch.begin();
 		
+		}
+	
+	public float getHertz() {
+		return hertz;
 		}
 	}
