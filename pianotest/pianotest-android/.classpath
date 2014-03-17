@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pianotest"/>
-	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
-	<classpathentry exported="true" kind="lib" path="/pianotest/libs/gdx.jar" sourcepath="/pianotest/libs/gdx-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd-android"/>
-	<classpathentry kind="output" path="bin/classes"/>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="src" path="gen"/>
+    <classpathentry combineaccessrules="false" exported="true" kind="src" path="/pianotest"/>
+    <classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+    <classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+    <classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+    <classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd"/>
+    <classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd-android"/>
+    <classpathentry kind="output" path="bin/classes"/>
+    <classpathentry exported="true" kind="lib" path="libs/gdx-backend-android.jar" sourcepath="libs/gdx-backend-android-sources.jar"/>
+    <classpathentry exported="true" kind="lib" path="/pianotest/libs/gdx.jar" sourcepath="/pianotest/libs/gdx-sources.jar"/>
 </classpath>

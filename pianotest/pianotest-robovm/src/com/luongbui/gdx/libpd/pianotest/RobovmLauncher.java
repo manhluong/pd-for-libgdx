@@ -22,13 +22,22 @@ import org.robovm.cocoatouch.uikit.UIApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 
+import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.ios.GdxPDIOS;
+
 public class RobovmLauncher extends IOSApplication.Delegate {
+	
+	private GdxPD audio;
+	
 	@Override
 	protected IOSApplication createApplication() {
+		
+		audio = new GdxPDIOS();
+		
 		IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 		config.orientationLandscape = true;
 		config.orientationPortrait = false;
-		return new IOSApplication(new PianoTest(), config);
+		return new IOSApplication(new PianoTest(audio), config);
 		}
 
 	public static void main(String[] argv) {

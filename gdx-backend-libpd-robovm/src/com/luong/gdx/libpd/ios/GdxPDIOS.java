@@ -3,6 +3,10 @@ package com.luong.gdx.libpd.ios;
 import com.luong.gdx.libpd.GdxPD;
 
 public class GdxPDIOS implements GdxPD {
+	
+	public GdxPDIOS() {
+		
+		}
 
 	@Override
 	public void init() {
