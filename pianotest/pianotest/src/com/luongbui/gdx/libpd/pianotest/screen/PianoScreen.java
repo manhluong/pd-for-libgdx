@@ -74,7 +74,7 @@ public class PianoScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		Vector2 size = Scaling.fillX.apply(WIDTH_VIRTUAL, HEIGHT_VIRTUAL, width, height);
+		Vector2 size = Scaling.stretch.apply(WIDTH_VIRTUAL, HEIGHT_VIRTUAL, width, height);
 		viewportX = MathUtils.ceilPositive(width - size.x) / 2;
 		viewportY = MathUtils.ceilPositive(height - size.y) / 2;
 		viewportWidth = MathUtils.floorPositive(size.x);
