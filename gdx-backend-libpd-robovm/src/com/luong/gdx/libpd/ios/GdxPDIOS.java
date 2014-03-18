@@ -2,9 +2,9 @@ package com.luong.gdx.libpd.ios;
 
 import com.luong.gdx.libpd.GdxPD;
 
-public class GdxPDIOS implements GdxPD {
+public class GdxPDiOS implements GdxPD {
 	
-	public GdxPDIOS() {
+	public GdxPDiOS() {
 		
 		}
 

@@ -23,7 +23,7 @@ import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
 
 import com.luong.gdx.libpd.GdxPD;
-import com.luong.gdx.libpd.ios.GdxPDIOS;
+import com.luong.gdx.libpd.ios.GdxPDiOS;
 
 public class RobovmLauncher extends IOSApplication.Delegate {
 	
@@ -32,7 +32,7 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 	@Override
 	protected IOSApplication createApplication() {
 		
-		audio = new GdxPDIOS();
+		audio = new GdxPDiOS();
 		
 		IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 		config.orientationLandscape = true;
