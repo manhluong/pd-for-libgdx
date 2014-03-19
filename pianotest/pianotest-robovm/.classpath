@@ -5,7 +5,7 @@
 	<classpathentry kind="con" path="org.robovm.eclipse.ROBOVM_COCOA_TOUCH_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/pianotest"/>
 	<classpathentry kind="lib" path="libs/gdx-backend-robovm.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-libpd"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/gdx-backend-libpd-robovm"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd-robovm"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
