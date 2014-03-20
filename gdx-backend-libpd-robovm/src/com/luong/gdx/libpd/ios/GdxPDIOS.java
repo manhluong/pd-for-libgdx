@@ -1,17 +1,19 @@
 package com.luong.gdx.libpd.ios;
 
 import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.ios.bridge.PdAudioController;
 
 public class GdxPDiOS implements GdxPD {
 	
+	protected static PdAudioController controller;
+	
 	public GdxPDiOS() {
-		
+		controller = new PdAudioController();
 		}
 
 	@Override
 	public void init() {
-		// TODO Auto-generated method stub
-		
+		// TODO
 		}
 
 	@Override
