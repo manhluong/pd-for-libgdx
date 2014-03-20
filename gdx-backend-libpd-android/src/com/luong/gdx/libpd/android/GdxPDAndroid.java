@@ -19,7 +19,7 @@ public class GdxPDAndroid implements GdxPD {
 	
 	final protected Context context;
 	
-	protected PdUiDispatcher dispatcher;
+	protected static PdUiDispatcher dispatcher;
 	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
