@@ -16,10 +16,12 @@ public class PdAudioController extends NSObject {
 		ObjCRuntime.bind(PdAudioController.class);
 		}
 	
+	private static final Selector init = Selector.register("init");
+	
 	private final Selector configureAmbientWithSampleRate$ = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
 	
 	public PdAudioController() {
-		init();
+		initObject(objc_init(this, init));
 		}
 	
 	protected PdAudioController (SkipInit skipInit) {
@@ -35,7 +37,7 @@ public class PdAudioController extends NSObject {
 		}
 	
 	@Bridge
-	private native @Pointer long init();
+	private native static @Pointer long objc_init (PdAudioController __self__, Selector __cmd__);
 	
 	@Bridge
 	private native PdAudioStatus objc_configureAmbientWithSampleRate(PdAudioController __self__,
