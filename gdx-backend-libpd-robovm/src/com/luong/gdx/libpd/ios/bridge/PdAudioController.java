@@ -22,6 +22,10 @@ public class PdAudioController extends NSObject {
 		init();
 		}
 	
+	protected PdAudioController (SkipInit skipInit) {
+	     super(skipInit);
+	     }
+	
 	public PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled) {
 		return objc_configureAmbientWithSampleRate(this,
 													configureAmbientWithSampleRate$,
