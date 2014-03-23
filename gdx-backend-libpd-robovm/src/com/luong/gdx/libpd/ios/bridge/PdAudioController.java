@@ -16,9 +16,20 @@ public class PdAudioController extends NSObject {
 		ObjCRuntime.bind(PdAudioController.class);
 		}
 	
+	/**
+	 * @property
+	 */
+	private static final Selector isActive = Selector.register("isActive");
+	
+	/**
+	 * @method
+	 */
 	private static final Selector init = Selector.register("init");
 	
-	private final Selector configureAmbientWithSampleRate$ = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
+	/**
+	 * @method
+	 */
+	private final Selector configureAmbientWithSampleRate = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
 	
 	public PdAudioController() {
 		initObject(objc_init(this, init));
@@ -30,11 +41,18 @@ public class PdAudioController extends NSObject {
 	
 	public PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled) {
 		return objc_configureAmbientWithSampleRate(this,
-													configureAmbientWithSampleRate$,
+													configureAmbientWithSampleRate,
 													sampleRate,
 													numChannels,
 													mixingEnabled);
 		}
+	
+	public boolean isActive () {
+	     return objc_isActive(this, isActive);
+	     }
+	
+	@Bridge
+	private native static boolean objc_isActive (PdAudioController __self__, Selector __cmd__);
 	
 	@Bridge
 	private native static @Pointer long objc_init (PdAudioController __self__, Selector __cmd__);
