@@ -20,6 +20,10 @@ public class PdDispatcher extends NSObject {
 	     super(skipInit);
 	     }
 	
+	public PdDispatcher() {
+		initObject(objc_init(this, init));
+		}
+	
 	/**
 	 * @method
 	 */
@@ -28,7 +32,4 @@ public class PdDispatcher extends NSObject {
 	@Bridge
 	private native static @Pointer long objc_init (PdDispatcher __self__, Selector __cmd__);
 	
-	public PdDispatcher() {
-		initObject(objc_init(this, init));
-		}
 	}
