@@ -17,27 +17,56 @@ public class PdAudioController extends NSObject {
 		}
 	
 	/**
-	 * @property
+	 * @property active getter
 	 */
 	private static final Selector isActive = Selector.register("isActive");
+	
+	@Bridge
+	private native static boolean objc_isActive (PdAudioController __self__, Selector __cmd__);
+	
+	public boolean isActive () {
+	     return objc_isActive(this, isActive);
+	     }
+	
+	/**
+	 * @property active setter
+	 */
+	private static final Selector active = Selector.register("active:");
+
+	@Bridge
+	private native static void objc_setActive (PdAudioController __self__, Selector __cmd__, boolean activeVal);
+
+	public void setUsername (boolean activeVal) {
+		objc_setActive(this, active, activeVal);
+		}
+	
+	protected PdAudioController (SkipInit skipInit) {
+	     super(skipInit);
+	     }
 	
 	/**
 	 * @method
 	 */
 	private static final Selector init = Selector.register("init");
 	
-	/**
-	 * @method
-	 */
-	private final Selector configureAmbientWithSampleRate = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
+	@Bridge
+	private native static @Pointer long objc_init (PdAudioController __self__, Selector __cmd__);
 	
 	public PdAudioController() {
 		initObject(objc_init(this, init));
 		}
 	
-	protected PdAudioController (SkipInit skipInit) {
-	     super(skipInit);
-	     }
+	/**
+	 * @method
+	 */
+	private final Selector configureAmbientWithSampleRate = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
+	
+	@Bridge
+	private native PdAudioStatus objc_configureAmbientWithSampleRate(PdAudioController __self__,
+																		Selector __cmd__,
+																		int sampleRate,
+																		int numChannels,
+																		boolean mixingEnabled);
 	
 	public PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled) {
 		return objc_configureAmbientWithSampleRate(this,
@@ -47,20 +76,5 @@ public class PdAudioController extends NSObject {
 													mixingEnabled);
 		}
 	
-	public boolean isActive () {
-	     return objc_isActive(this, isActive);
-	     }
 	
-	@Bridge
-	private native static boolean objc_isActive (PdAudioController __self__, Selector __cmd__);
-	
-	@Bridge
-	private native static @Pointer long objc_init (PdAudioController __self__, Selector __cmd__);
-	
-	@Bridge
-	private native PdAudioStatus objc_configureAmbientWithSampleRate(PdAudioController __self__,
-																		Selector __cmd__,
-																		int sampleRate,
-																		int numChannels,
-																		boolean mixingEnabled);
 	}
