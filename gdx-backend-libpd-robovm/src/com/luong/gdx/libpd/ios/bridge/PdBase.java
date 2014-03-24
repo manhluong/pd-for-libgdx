@@ -6,6 +6,12 @@ import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NativeClass;
 import org.robovm.rt.bro.annotation.Library;
 
+
+/**
+ * @ interface PdBase {
+ * // Not meant to be instantiated. No member variables.
+ * }
+ */
 @Library(Library.INTERNAL)
 @NativeClass
 public class PdBase extends NSObject {
