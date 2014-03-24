@@ -17,7 +17,8 @@ public class PdAudioController extends NSObject {
 		}
 	
 	/**
-	 * @property active getter
+	 * // Check or set the active status of the audio unit
+	 * @ property (nonatomic, getter=isActive) BOOL active;
 	 */
 	private static final Selector isActive = Selector.register("isActive");
 	
@@ -29,7 +30,8 @@ public class PdAudioController extends NSObject {
 	     }
 	
 	/**
-	 * @property active setter
+	 * // Check or set the active status of the audio unit
+	 * @ property (nonatomic, getter=isActive) BOOL active;
 	 */
 	private static final Selector setActive = Selector.register("setActive:");
 
@@ -45,7 +47,7 @@ public class PdAudioController extends NSObject {
 	     }
 	
 	/**
-	 * @method
+	 * Init method.
 	 */
 	private static final Selector init = Selector.register("init");
 	
@@ -57,8 +59,6 @@ public class PdAudioController extends NSObject {
 		}
 	
 	/**
-	 * @method
-	 * 
 	 * // Configure audio for ambient use, without input channels.  Specifying mixingEnabled = YES will allow the app to continue
 	 * // playing audio along with other apps (such as iPod music player).
 	 * - (PdAudioStatus)configureAmbientWithSampleRate:(int)sampleRate
