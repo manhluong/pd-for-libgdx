@@ -58,6 +58,12 @@ public class PdAudioController extends NSObject {
 	
 	/**
 	 * @method
+	 * 
+	 * // Configure audio for ambient use, without input channels.  Specifying mixingEnabled = YES will allow the app to continue
+	 * // playing audio along with other apps (such as iPod music player).
+	 * - (PdAudioStatus)configureAmbientWithSampleRate:(int)sampleRate
+	 * 									numberChannels:(int)numChannels
+	 * 									 mixingEnabled:(BOOL)mixingEnabled;
 	 */
 	private final Selector configureAmbientWithSampleRate = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
 	
