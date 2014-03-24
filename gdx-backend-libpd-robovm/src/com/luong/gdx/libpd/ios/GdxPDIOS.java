@@ -53,6 +53,7 @@ public class GdxPDiOS implements GdxPD {
 		//[PdBase setDelegate:nil];
 		PdBase.closeFile(patchPtr);
 		PdBase.setDelegate(null);
+		audioController.dealloc();
 		}
 
 	@Override
