@@ -22,7 +22,7 @@ public interface PdReceiverDelegate extends PdListener {
 	static class Callbacks { 
 		@Callback
         @BindSelector("receivePrint:")
-        public static void setDelegate(PdReceiverDelegate __self__, Selector __cmd__, NSString delegate){
+        public static void receivePrint(PdReceiverDelegate __self__, Selector __cmd__, NSString delegate){
 			__self__.receivePrint(delegate);
 			}
 		}
