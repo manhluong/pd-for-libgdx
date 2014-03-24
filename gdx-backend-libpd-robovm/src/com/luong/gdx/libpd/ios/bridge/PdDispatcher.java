@@ -2,9 +2,8 @@ package com.luong.gdx.libpd.ios.bridge;
 
 import org.robovm.cocoatouch.foundation.NSObject;
 import org.robovm.objc.ObjCRuntime;
-import org.robovm.objc.Selector;
+import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NativeClass;
-import org.robovm.rt.bro.annotation.Bridge;
 import org.robovm.rt.bro.annotation.Library;
 import org.robovm.rt.bro.annotation.Pointer;
 
@@ -16,20 +15,12 @@ public class PdDispatcher extends NSObject {
 		ObjCRuntime.bind(PdDispatcher.class);
 		}
 	
-	protected PdDispatcher (SkipInit skipInit) {
-	     super(skipInit);
-	     }
-	
 	public PdDispatcher() {
-		initObject(objc_init(this, init));
+		super((SkipInit)null);
+		initObject(init());
 		}
 	
-	/**
-	 * @method
-	 */
-	private static final Selector init = Selector.register("init");
-	
-	@Bridge
-	private native static @Pointer long objc_init (PdDispatcher __self__, Selector __cmd__);
+	@Method(selector = "init")
+	public native @Pointer long init();
 	
 	}
