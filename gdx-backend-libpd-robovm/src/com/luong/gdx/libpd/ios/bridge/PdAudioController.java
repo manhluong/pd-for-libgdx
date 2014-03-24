@@ -39,6 +39,12 @@ public class PdAudioController extends NSObject {
 	public native @Pointer long init();
 	
 	/**
+	 * - (void)dealloc
+	 */
+	@Method(selector = "dealloc")
+	public native void dealloc();
+	
+	/**
 	 * // Configure audio for ambient use, without input channels.  Specifying mixingEnabled = YES will allow the app to continue
 	 * // playing audio along with other apps (such as iPod music player).
 	 * - (PdAudioStatus)configureAmbientWithSampleRate:(int)sampleRate
