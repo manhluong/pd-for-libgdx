@@ -2,13 +2,17 @@ package com.luong.gdx.libpd.ios;
 
 import com.luong.gdx.libpd.GdxPD;
 import com.luong.gdx.libpd.ios.bridge.PdAudioController;
+import com.luong.gdx.libpd.ios.bridge.PdBase;
+import com.luong.gdx.libpd.ios.bridge.PdDispatcher;
 
 public class GdxPDiOS implements GdxPD {
 	
-	protected static PdAudioController controller;
+	protected static PdAudioController audioController;
+	
+	protected static PdDispatcher dispatcher;
 	
 	public GdxPDiOS() {
-		controller = new PdAudioController();
+		
 		}
 
 	@Override
@@ -19,6 +23,12 @@ public class GdxPDiOS implements GdxPD {
 		//     numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
 		//	NSLog(@"failed to initialize audio components");
 		//	}
+		//dispatcher = [[PdDispatcher alloc] init];
+		//[PdBase setDelegate:dispatcher];
+		audioController = new PdAudioController();
+		audioController.configureAmbientWithSampleRate(44100, 2, true);
+		dispatcher = new PdDispatcher();
+		PdBase.setDelegate(dispatcher);
 		}
 
 	@Override
@@ -31,8 +41,6 @@ public class GdxPDiOS implements GdxPD {
 	@Override
 	public void loadPatch(String patchName) {
 		// TODO Auto-generated method stub
-		//dispatcher = [[PdDispatcher alloc] init];
-		//[PdBase setDelegate:dispatcher];
 		//patch = [PdBase openFile:@"tuner.pd"
 		//path:[[NSBundle mainBundle] resourcePath]];
 		//if (!patch) {
