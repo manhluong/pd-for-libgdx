@@ -3,6 +3,7 @@ package com.luong.gdx.libpd.ios.bridge;
 import org.robovm.cocoatouch.foundation.NSObject;
 import org.robovm.objc.ObjCRuntime;
 import org.robovm.objc.Selector;
+import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NativeClass;
 import org.robovm.rt.bro.annotation.Bridge;
 import org.robovm.rt.bro.annotation.Library;
@@ -42,21 +43,13 @@ public class PdAudioController extends NSObject {
 		objc_setActive(this, setActive, activeVal);
 		}
 	
-	protected PdAudioController (SkipInit skipInit) {
-	     super(skipInit);
-	     }
-	
-	/**
-	 * Init method.
-	 */
-	private static final Selector init = Selector.register("init");
-	
-	@Bridge
-	private native static @Pointer long objc_init (PdAudioController __self__, Selector __cmd__);
-	
 	public PdAudioController() {
-		initObject(objc_init(this, init));
+		super((SkipInit)null);
+		initObject(init());
 		}
+	
+	@Method(selector = "init")
+	public native @Pointer long init();
 	
 	/**
 	 * // Configure audio for ambient use, without input channels.  Specifying mixingEnabled = YES will allow the app to continue
