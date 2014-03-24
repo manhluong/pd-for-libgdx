@@ -31,13 +31,13 @@ public class PdAudioController extends NSObject {
 	/**
 	 * @property active setter
 	 */
-	private static final Selector active = Selector.register("active:");
+	private static final Selector setActive = Selector.register("setActive:");
 
 	@Bridge
 	private native static void objc_setActive (PdAudioController __self__, Selector __cmd__, boolean activeVal);
 
-	public void setUsername (boolean activeVal) {
-		objc_setActive(this, active, activeVal);
+	public void setActive (boolean activeVal) {
+		objc_setActive(this, setActive, activeVal);
 		}
 	
 	protected PdAudioController (SkipInit skipInit) {
