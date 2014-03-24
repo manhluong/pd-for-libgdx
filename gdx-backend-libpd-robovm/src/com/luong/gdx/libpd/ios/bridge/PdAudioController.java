@@ -58,22 +58,8 @@ public class PdAudioController extends NSObject {
 	 * 									numberChannels:(int)numChannels
 	 * 									 mixingEnabled:(BOOL)mixingEnabled;
 	 */
-	private final Selector configureAmbientWithSampleRate = Selector.register("configureAmbientWithSampleRate:numberChannels:mixingEnabled:");
-	
-	@Bridge
-	private native PdAudioStatus objc_configureAmbientWithSampleRate(PdAudioController __self__,
-																		Selector __cmd__,
-																		int sampleRate,
-																		int numChannels,
-																		boolean mixingEnabled);
-	
-	public PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled) {
-		return objc_configureAmbientWithSampleRate(this,
-													configureAmbientWithSampleRate,
-													sampleRate,
-													numChannels,
-													mixingEnabled);
-		}
+	@Method(selector = "configureAmbientWithSampleRate:numberChannels:mixingEnabled:")
+	public native PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled);
 	
 	
 	}
