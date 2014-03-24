@@ -6,7 +6,7 @@ import org.robovm.objc.ObjCRuntime;
 import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NativeClass;
 import org.robovm.rt.bro.annotation.Library;
-import org.robovm.rt.bro.annotation.Pointer;
+import org.robovm.rt.bro.ptr.VoidPtr;
 
 
 /**
@@ -45,13 +45,13 @@ public class PdBase extends NSObject {
 	 * 				 path:(NSString *)pathName;
 	 */
 	@Method(selector = "openFile:path:")
-	public static native void openFile(NSString baseName, NSString pathName);
+	public static native VoidPtr openFile(NSString baseName, NSString pathName);
 	
 	/**
 	 * + (void)closeFile:(void *)x;
 	 */
 	@Method(selector = "closeFile:")
-	public static native void closeFile(@Pointer long x);
+	public static native void closeFile(VoidPtr x);
 	
 	/**
 	 * + (int)sendFloat:(float)value

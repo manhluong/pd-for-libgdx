@@ -1,5 +1,9 @@
 package com.luong.gdx.libpd.ios;
 
+import org.robovm.cocoatouch.foundation.NSBundle;
+import org.robovm.cocoatouch.foundation.NSString;
+import org.robovm.rt.bro.ptr.VoidPtr;
+
 import com.luong.gdx.libpd.GdxPD;
 import com.luong.gdx.libpd.ios.bridge.PdAudioController;
 import com.luong.gdx.libpd.ios.bridge.PdBase;
@@ -10,6 +14,8 @@ public class GdxPDiOS implements GdxPD {
 	protected static PdAudioController audioController;
 	
 	protected static PdDispatcher dispatcher;
+
+	protected VoidPtr patchPtr;
 	
 	public GdxPDiOS() {
 		
@@ -17,7 +23,6 @@ public class GdxPDiOS implements GdxPD {
 
 	@Override
 	public void init() {
-		// TODO
 		//_audioController = [[PdAudioController alloc] init];
 		//if ([self.audioController configureAmbientWithSampleRate:44100
 		//     numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
@@ -30,44 +35,46 @@ public class GdxPDiOS implements GdxPD {
 		dispatcher = new PdDispatcher();
 		PdBase.setDelegate(dispatcher);
 		}
-
-	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-		//[PdBase closeFile:patch];
-		//[PdBase setDelegate:nil];
-		}
-
+	
 	@Override
 	public void loadPatch(String patchName) {
-		// TODO Auto-generated method stub
 		//patch = [PdBase openFile:@"tuner.pd"
 		//path:[[NSBundle mainBundle] resourcePath]];
 		//if (!patch) {
 		//	NSLog(@"Failed to open patch!");
 		//	}
+		patchPtr = PdBase.openFile(new NSString(patchName),
+									new NSString(NSBundle.getMainBundle().getResourcePath()));
+		}
+
+	@Override
+	public void dispose() {
+		//[PdBase closeFile:patch];
+		//[PdBase setDelegate:nil];
+		PdBase.closeFile(patchPtr);
+		PdBase.setDelegate(null);
 		}
 
 	@Override
 	public void startAudio() {
-		// TODO Auto-generated method stub
 		// self.audioController.active = YES;
+		audioController.setActive(true);
 		}
 
 	@Override
 	public void stopAudio() {
-		// TODO Auto-generated method stub
 		// self.audioController.active = NO;
+		audioController.setActive(false);
 		}
 
 	@Override
 	public void sendBang(String bang) {
-		// TODO Auto-generated method stub
 		//[PdBase sendBangToReceiver:@"trigger"];
+		PdBase.sendBangToReceiver(new NSString(bang));
 		}
 
 	public void sendFloat(String label, float number) {
-		// TODO
 		//[PdBase sendFloat:n toReceiver:@"midinote"];
+		PdBase.sendFloat(number, new NSString(label));
 		}
 	}
