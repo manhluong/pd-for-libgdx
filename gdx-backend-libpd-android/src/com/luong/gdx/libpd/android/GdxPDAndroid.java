@@ -49,10 +49,11 @@ public class GdxPDAndroid implements GdxPD {
 	 * Ensure that the framework created a Gdx object when called.
 	 */
 	@Override
-	public void loadPatch(String zipName, String patchName) throws IOException {
+	public void loadPatch(String patchName) throws IOException {
 		Log.d("loadPatch()", "Load!");
 		File dir = context.getFilesDir();
-		IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
+		//if(zipName!=null)
+		//	IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
 		File patchFile = new File(dir, patchName);
 		PdBase.openPatch(patchFile.getAbsolutePath());
 		}

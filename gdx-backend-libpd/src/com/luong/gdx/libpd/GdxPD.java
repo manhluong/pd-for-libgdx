@@ -7,7 +7,7 @@ public interface GdxPD {
 	
 	public void dispose();
 	
-	public void loadPatch(String zipName, String patchName) throws IOException;
+	public void loadPatch(String patchName) throws IOException;
 	
 	public void startAudio();
 	

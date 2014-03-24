@@ -23,7 +23,7 @@ public class GdxPDiOS implements GdxPD {
 		}
 
 	@Override
-	public void loadPatch(String zipName, String patchName) {
+	public void loadPatch(String patchName) {
 		// TODO Auto-generated method stub
 		
 		}
