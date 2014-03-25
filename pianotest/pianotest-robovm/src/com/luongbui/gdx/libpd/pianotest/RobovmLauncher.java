@@ -39,6 +39,24 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 		config.orientationPortrait = false;
 		return new IOSApplication(new PianoTest(audio), config);
 		}
+	
+	@Override
+	public void didBecomeActive(UIApplication application) {
+		super.didBecomeActive(application);
+		audio.startAudio();
+		}
+	
+	@Override
+	public void willResignActive(UIApplication application) {
+		super.willResignActive(application);
+		audio.stopAudio();
+		}
+	
+	@Override
+	public void willTerminate(UIApplication application) {
+		super.willResignActive(application);
+		audio.dispose();
+		}
 
 	public static void main(String[] argv) {
 		NSAutoreleasePool pool = new NSAutoreleasePool();
