@@ -19,4 +19,6 @@ public interface GdxPD {
 	public int sendBang(String bang);
 	
 	public int sendFloat(String label, float number);
+	
+	public int sendSymbol(String recv, String sym);
 	}

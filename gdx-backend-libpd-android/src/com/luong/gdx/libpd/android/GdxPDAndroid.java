@@ -9,8 +9,10 @@ import org.puredata.android.utils.PdUiDispatcher;
 import org.puredata.core.PdBase;
 //import org.puredata.core.utils.IoUtils;
 
+
 import android.content.Context;
-import android.util.Log;
+//import android.util.Log;
+
 
 //import com.badlogic.gdx.Gdx;
 import com.luong.gdx.libpd.GdxPD;
@@ -30,7 +32,7 @@ public class GdxPDAndroid implements GdxPD {
 	 */
 	@Override
 	public void init() throws IOException {
-		Log.d("init()", "Init!");
+		//Log.d("init()", "Init!");
 		int sampleRate = AudioParameters.suggestSampleRate();
 		PdAudio.initAudio(sampleRate, 0, 2, 8, true);
 		dispatcher = new PdUiDispatcher();
@@ -39,7 +41,7 @@ public class GdxPDAndroid implements GdxPD {
 
 	@Override
 	public void dispose() {
-		Log.d("dispose()", "Dispose!");
+		//Log.d("dispose()", "Dispose!");
 		PdBase.setReceiver(null);
 		PdAudio.release();
 		PdBase.release();
@@ -51,7 +53,7 @@ public class GdxPDAndroid implements GdxPD {
 	 */
 	@Override
 	public void loadPatch(String patchName) throws IOException {
-		Log.d("loadPatch()", "Load!");
+		//Log.d("loadPatch()", "Load!");
 		File dir = context.getFilesDir();
 		//if(zipName!=null)
 		//	IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
@@ -61,25 +63,30 @@ public class GdxPDAndroid implements GdxPD {
 
 	@Override
 	public void startAudio() {
-		Log.d("startAudio()", "Start!");
+		//Log.d("startAudio()", "Start!");
 		PdAudio.startAudio(context);
 		}
 
 	@Override
 	public void stopAudio() {
-		Log.d("stopAudio()", "Stop!");
+		//Log.d("stopAudio()", "Stop!");
 		PdAudio.stopAudio();
 		}
 
 	@Override
 	public int sendBang(String bang) {
-		Log.d("sendBang()", bang);
+		//Log.d("sendBang()", bang);
 		return PdBase.sendBang(bang);
 		}
 	
 	@Override
 	public int sendFloat(String label, float number) {
-		Log.d("sendFloat()", label + ": " + number);
+		//Log.d("sendFloat()", label + ": " + number);
 		return PdBase.sendFloat(label, number);
+		}
+	
+	@Override
+	public int sendSymbol(String recv, String sym) {
+		return PdBase.sendSymbol(recv, sym);
 		}
 	}

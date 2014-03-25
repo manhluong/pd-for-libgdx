@@ -65,4 +65,10 @@ public class PdBase extends NSObject {
 	 */
 	@Method(selector = "sendBangToReceiver:")
 	public static native int sendBangToReceiver(NSString receiverName);
+	
+	/**
+	 * + (int)sendSymbol:(NSString *)symbol toReceiver:(NSString *)receiverName;
+	 */
+	@Method(selector = "sendSymbol:toReceiver:")
+	public static native int sendSymbol(NSString symbol, NSString receiverName);
 	}

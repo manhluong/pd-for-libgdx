@@ -113,4 +113,9 @@ public class GdxPDiOS implements GdxPD {
 		//[PdBase sendFloat:n toReceiver:@"midinote"];
 		return PdBase.sendFloat(number, new NSString(label));
 		}
+
+	@Override
+	public int sendSymbol(String recv, String sym) {
+		return PdBase.sendSymbol(new NSString(sym), new NSString(recv));
+		}
 	}
