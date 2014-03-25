@@ -71,14 +71,14 @@ public class GdxPDAndroid implements GdxPD {
 		}
 
 	@Override
-	public void sendBang(String bang) {
+	public int sendBang(String bang) {
 		Log.d("sendBang()", bang);
-		PdBase.sendBang(bang);
+		return PdBase.sendBang(bang);
 		}
 	
 	@Override
-	public void sendFloat(String label, float number) {
+	public int sendFloat(String label, float number) {
 		Log.d("sendFloat()", label + ": " + number);
-		PdBase.sendFloat(label, number);
+		return PdBase.sendFloat(label, number);
 		}
 	}

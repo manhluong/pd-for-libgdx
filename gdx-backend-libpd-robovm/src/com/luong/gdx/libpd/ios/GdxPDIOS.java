@@ -104,13 +104,13 @@ public class GdxPDiOS implements GdxPD {
 		}
 
 	@Override
-	public void sendBang(String bang) {
+	public int sendBang(String bang) {
 		//[PdBase sendBangToReceiver:@"trigger"];
-		PdBase.sendBangToReceiver(new NSString(bang));
+		return PdBase.sendBangToReceiver(new NSString(bang));
 		}
 
-	public void sendFloat(String label, float number) {
+	public int sendFloat(String label, float number) {
 		//[PdBase sendFloat:n toReceiver:@"midinote"];
-		PdBase.sendFloat(number, new NSString(label));
+		return PdBase.sendFloat(number, new NSString(label));
 		}
 	}

@@ -3,6 +3,7 @@ package com.luong.gdx.libpd;
 import java.io.IOException;
 
 public interface GdxPD {
+	
 	public void init() throws IOException;
 	
 	public void dispose();
@@ -13,7 +14,9 @@ public interface GdxPD {
 	
 	public void stopAudio();
 	
-	public void sendBang(String bang);
+	/* SEND METHODS */
 	
-	public void sendFloat(String label, float number);
+	public int sendBang(String bang);
+	
+	public int sendFloat(String label, float number);
 	}
