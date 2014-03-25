@@ -1,5 +1,6 @@
 package com.luong.gdx.libpd.ios.bindings;
 
+import org.robovm.cocoatouch.foundation.NSArray;
 import org.robovm.cocoatouch.foundation.NSObject;
 import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.objc.ObjCRuntime;
@@ -71,4 +72,10 @@ public class PdBase extends NSObject {
 	 */
 	@Method(selector = "sendSymbol:toReceiver:")
 	public static native int sendSymbol(NSString symbol, NSString receiverName);
+	
+	/**
+	 * + (int)sendList:(NSArray *)list toReceiver:(NSString *)receiverName;
+	 */
+	@Method(selector = "sendList:toReceiver:")
+	public static native int sendList(NSArray<?> list, NSString receiverName);
 	}

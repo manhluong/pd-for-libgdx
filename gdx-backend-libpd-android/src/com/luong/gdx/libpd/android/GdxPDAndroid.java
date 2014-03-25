@@ -10,8 +10,10 @@ import org.puredata.core.PdBase;
 //import org.puredata.core.utils.IoUtils;
 
 
+
 import android.content.Context;
 //import android.util.Log;
+
 
 
 //import com.badlogic.gdx.Gdx;
@@ -88,5 +90,10 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public int sendSymbol(String recv, String sym) {
 		return PdBase.sendSymbol(recv, sym);
+		}
+
+	@Override
+	public int sendList(String recv, Object... args) {
+		return PdBase.sendList(recv, args);
 		}
 	}

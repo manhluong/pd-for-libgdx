@@ -21,4 +21,12 @@ public interface GdxPD {
 	public int sendFloat(String label, float number);
 	
 	public int sendSymbol(String recv, String sym);
+	
+	/**
+	 * 
+	 * @param recv
+	 * @param args list of arguments of type Integer, Float, or String
+	 * @return
+	 */
+	public int sendList(String recv, Object... args);
 	}
