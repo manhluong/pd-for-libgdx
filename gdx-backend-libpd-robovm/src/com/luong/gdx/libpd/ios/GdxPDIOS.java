@@ -26,6 +26,12 @@ public class GdxPDiOS implements GdxPD {
 	
 	protected boolean mixingEnabled;
 	
+	public GdxPDiOS() {
+		sampleRate = 44100;
+		numChannels = 2;
+		mixingEnabled = true;
+		}
+	
 	public GdxPDiOS(int rate, int channels, boolean mixing) {
 		sampleRate = rate;
 		numChannels = channels;
