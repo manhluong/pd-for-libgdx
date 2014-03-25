@@ -37,6 +37,18 @@ public class GdxPDiOS implements GdxPD {
 		numChannels = channels;
 		mixingEnabled = mixing;
 		}
+	
+	/**
+	 * Useful if you don't want to set the parameters at instantiation.
+	 * @param rate Sample rate.
+	 * @param channels Number of channels.
+	 * @param mixing
+	 */
+	public void setAudioParams(int rate, int channels, boolean mixing) {
+		sampleRate = rate;
+		numChannels = channels;
+		mixingEnabled = mixing;
+		}
 
 	@Override
 	public void init() throws IOException {
