@@ -48,14 +48,14 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 	
 	@Override
 	public void willResignActive(UIApplication application) {
-		super.willResignActive(application);
 		audio.stopAudio();
+		super.willResignActive(application);
 		}
 	
 	@Override
 	public void willTerminate(UIApplication application) {
-		super.willResignActive(application);
 		audio.dispose();
+		super.willTerminate(application);
 		}
 
 	public static void main(String[] argv) {
