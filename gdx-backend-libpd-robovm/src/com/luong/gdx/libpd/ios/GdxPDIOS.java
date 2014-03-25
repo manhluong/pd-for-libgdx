@@ -20,8 +20,16 @@ public class GdxPDiOS implements GdxPD {
 
 	protected VoidPtr patchPtr;
 	
-	public GdxPDiOS() {
-		
+	protected int sampleRate;
+	
+	protected int numChannels;
+	
+	protected boolean mixingEnabled;
+	
+	public GdxPDiOS(int rate, int channels, boolean mixing) {
+		sampleRate = rate;
+		numChannels = channels;
+		mixingEnabled = mixing;
 		}
 
 	@Override
@@ -34,8 +42,8 @@ public class GdxPDiOS implements GdxPD {
 		//dispatcher = [[PdDispatcher alloc] init];
 		//[PdBase setDelegate:dispatcher];
 		audioController = new PdAudioController();
-		if(audioController.configureAmbientWithSampleRate(44100, 2, true) != PdAudioStatus.PdAudioOK) {
-			throw new IOException("audioController.configureAmbientWithSampleRate failed!");
+		if(audioController.configureAmbientWithSampleRate(sampleRate, numChannels, mixingEnabled) != PdAudioStatus.PdAudioOK) {
+			throw new IOException("Failed to initialize audio components!");
 			}
 		else {
 			dispatcher = new PdDispatcher();
@@ -53,7 +61,7 @@ public class GdxPDiOS implements GdxPD {
 		patchPtr = PdBase.openFile(new NSString(patchName),
 									new NSString(NSBundle.getMainBundle().getResourcePath()));
 		if(patchPtr == null)
-			throw new IOException("loadPatch failed!");
+			throw new IOException("Failed to open patch!");
 		}
 
 	@Override
