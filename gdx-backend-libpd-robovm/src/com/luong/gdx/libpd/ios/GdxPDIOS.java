@@ -1,11 +1,14 @@
 package com.luong.gdx.libpd.ios;
 
+import java.io.IOException;
+
 import org.robovm.cocoatouch.foundation.NSBundle;
 import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
 import com.luong.gdx.libpd.GdxPD;
 import com.luong.gdx.libpd.ios.bindings.PdAudioController;
+import com.luong.gdx.libpd.ios.bindings.PdAudioStatus;
 import com.luong.gdx.libpd.ios.bindings.PdBase;
 import com.luong.gdx.libpd.ios.bindings.PdDispatcher;
 
@@ -22,7 +25,7 @@ public class GdxPDiOS implements GdxPD {
 		}
 
 	@Override
-	public void init() {
+	public void init() throws IOException {
 		//_audioController = [[PdAudioController alloc] init];
 		//if ([self.audioController configureAmbientWithSampleRate:44100
 		//     numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
@@ -31,13 +34,17 @@ public class GdxPDiOS implements GdxPD {
 		//dispatcher = [[PdDispatcher alloc] init];
 		//[PdBase setDelegate:dispatcher];
 		audioController = new PdAudioController();
-		audioController.configureAmbientWithSampleRate(44100, 2, true);
-		dispatcher = new PdDispatcher();
-		PdBase.setDelegate(dispatcher);
+		if(audioController.configureAmbientWithSampleRate(44100, 2, true) != PdAudioStatus.PdAudioOK) {
+			throw new IOException("audioController.configureAmbientWithSampleRate failed!");
+			}
+		else {
+			dispatcher = new PdDispatcher();
+			PdBase.setDelegate(dispatcher);
+			}
 		}
 	
 	@Override
-	public void loadPatch(String patchName) {
+	public void loadPatch(String patchName) throws IOException {
 		//patch = [PdBase openFile:@"tuner.pd"
 		//path:[[NSBundle mainBundle] resourcePath]];
 		//if (!patch) {
@@ -45,6 +52,8 @@ public class GdxPDiOS implements GdxPD {
 		//	}
 		patchPtr = PdBase.openFile(new NSString(patchName),
 									new NSString(NSBundle.getMainBundle().getResourcePath()));
+		if(patchPtr == null)
+			throw new IOException("loadPatch failed!");
 		}
 
 	@Override
