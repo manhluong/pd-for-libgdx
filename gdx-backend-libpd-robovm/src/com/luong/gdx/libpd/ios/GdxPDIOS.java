@@ -52,13 +52,6 @@ public class GdxPDiOS implements GdxPD {
 
 	@Override
 	public void init() throws IOException {
-		//_audioController = [[PdAudioController alloc] init];
-		//if ([self.audioController configureAmbientWithSampleRate:44100
-		//     numberChannels:2 mixingEnabled:YES] != PdAudioOK) {
-		//	NSLog(@"failed to initialize audio components");
-		//	}
-		//dispatcher = [[PdDispatcher alloc] init];
-		//[PdBase setDelegate:dispatcher];
 		audioController = new PdAudioController();
 		if(audioController.configureAmbientWithSampleRate(sampleRate, numChannels, mixingEnabled) != PdAudioStatus.PdAudioOK) {
 			throw new IOException("Failed to initialize audio components!");
@@ -71,11 +64,6 @@ public class GdxPDiOS implements GdxPD {
 	
 	@Override
 	public void loadPatch(String patchName) throws IOException {
-		//patch = [PdBase openFile:@"tuner.pd"
-		//path:[[NSBundle mainBundle] resourcePath]];
-		//if (!patch) {
-		//	NSLog(@"Failed to open patch!");
-		//	}
 		patchPtr = PdBase.openFile(new NSString(patchName),
 									new NSString(NSBundle.getMainBundle().getResourcePath()));
 		if(patchPtr == null)
@@ -105,12 +93,10 @@ public class GdxPDiOS implements GdxPD {
 
 	@Override
 	public int sendBang(String bang) {
-		//[PdBase sendBangToReceiver:@"trigger"];
 		return PdBase.sendBangToReceiver(new NSString(bang));
 		}
 
 	public int sendFloat(String label, float number) {
-		//[PdBase sendFloat:n toReceiver:@"midinote"];
 		return PdBase.sendFloat(number, new NSString(label));
 		}
 
