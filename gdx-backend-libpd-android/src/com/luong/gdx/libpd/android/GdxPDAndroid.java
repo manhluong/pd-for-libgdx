@@ -40,6 +40,7 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public void dispose() {
 		Log.d("dispose()", "Dispose!");
+		PdBase.setReceiver(null);
 		PdAudio.release();
 		PdBase.release();
 		}
