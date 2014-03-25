@@ -1,4 +1,4 @@
-package com.luong.gdx.libpd.ios.bridge;
+package com.luong.gdx.libpd.ios.bindings;
 
 import org.robovm.rt.bro.ValuedEnum;
 

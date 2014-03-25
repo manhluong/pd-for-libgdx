@@ -5,9 +5,9 @@ import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
 import com.luong.gdx.libpd.GdxPD;
-import com.luong.gdx.libpd.ios.bridge.PdAudioController;
-import com.luong.gdx.libpd.ios.bridge.PdBase;
-import com.luong.gdx.libpd.ios.bridge.PdDispatcher;
+import com.luong.gdx.libpd.ios.bindings.PdAudioController;
+import com.luong.gdx.libpd.ios.bindings.PdBase;
+import com.luong.gdx.libpd.ios.bindings.PdDispatcher;
 
 public class GdxPDiOS implements GdxPD {
 	
