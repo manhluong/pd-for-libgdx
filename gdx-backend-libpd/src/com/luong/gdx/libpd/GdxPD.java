@@ -29,4 +29,13 @@ public interface GdxPD {
 	 * @return
 	 */
 	public int sendList(String recv, Object... args);
+	
+	/**
+	 * 
+	 * @param recv
+	 * @param msg
+	 * @param args list of arguments of type Integer, Float, or String
+	 * @return
+	 */
+	public int sendMessage(String recv, String msg, Object... args);
 	}

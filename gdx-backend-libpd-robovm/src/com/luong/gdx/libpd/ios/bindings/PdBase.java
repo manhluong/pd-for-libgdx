@@ -74,8 +74,16 @@ public class PdBase extends NSObject {
 	public static native int sendSymbol(NSString symbol, NSString receiverName);
 	
 	/**
+	 * // list may be nil
 	 * + (int)sendList:(NSArray *)list toReceiver:(NSString *)receiverName;
 	 */
 	@Method(selector = "sendList:toReceiver:")
 	public static native int sendList(NSArray<?> list, NSString receiverName);
+	
+	/**
+	 * // list may be nil
+	 * + (int)sendMessage:(NSString *)message withArguments:(NSArray *)list toReceiver:(NSString *)receiverName;
+	 */
+	@Method(selector = "sendMessage:withArguments:toReceiver:")
+	public static native int sendMessage(NSString message, NSArray<?> list, NSString receiverName);
 	}

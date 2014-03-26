@@ -7,16 +7,9 @@ import org.puredata.android.io.AudioParameters;
 import org.puredata.android.io.PdAudio;
 import org.puredata.android.utils.PdUiDispatcher;
 import org.puredata.core.PdBase;
-//import org.puredata.core.utils.IoUtils;
-
-
 
 import android.content.Context;
-//import android.util.Log;
 
-
-
-//import com.badlogic.gdx.Gdx;
 import com.luong.gdx.libpd.GdxPD;
 
 public class GdxPDAndroid implements GdxPD {
@@ -95,5 +88,10 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public int sendList(String recv, Object... args) {
 		return PdBase.sendList(recv, args);
+		}
+
+	@Override
+	public int sendMessage(String recv, String msg, Object... args) {
+		return PdBase.sendMessage(recv, msg, args);
 		}
 	}

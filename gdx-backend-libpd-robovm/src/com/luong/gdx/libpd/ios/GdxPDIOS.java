@@ -135,4 +135,32 @@ public class GdxPDiOS implements GdxPD {
 			}
 		return PdBase.sendList(list, new NSString(recv));
 		}
+
+	/**
+	 * In the Android version of libpd, it is stated that args is a "list of arguments of type Integer, Float, or String".<br>
+	 * <br>
+	 * In the iOS version of libpd, we can see from this method of PdBase.m:<br>
+	 * <br>
+	 * 		static void encodeList(NSArray *list)<br>
+	 * <br>
+	 * That the list can have NSObject of type NSNumber (from wich a float is extracted) or an NSString.<br>
+	 * <br>
+	 * So what I do internally is to check all elements of args and convert them to NSNumber if they are
+	 * a Float or an Integer and to NSString if they are a String.<br>
+	 * <br>
+	 * It seems that in case of errors, no exceptions are thrown nor return values are returned.<br>
+	 */
+	@Override
+	public int sendMessage(String recv, String msg, Object... args) {
+		NSArray<NSObject> list = new NSArray<NSObject>();
+		for(Object obj : args) {
+			if(obj instanceof Integer)
+				list.add( NSNumber.valueOf( ((Integer)obj).intValue() ) );
+			else if(obj instanceof Float)
+				list.add( NSNumber.valueOf( ((Integer)obj).floatValue() ) );
+			else if(obj instanceof String)
+				list.add(new NSString((String)obj));
+			}
+		return PdBase.sendMessage(new NSString(msg), list, new NSString(recv));
+		}
 	}
