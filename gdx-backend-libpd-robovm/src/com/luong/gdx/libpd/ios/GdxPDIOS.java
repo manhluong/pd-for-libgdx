@@ -115,7 +115,7 @@ public class GdxPDiOS implements GdxPD {
 	 * <br>
 	 * 		static void encodeList(NSArray *list)<br>
 	 * <br>
-	 * That the list can have NSObject of type NSNumber (from wich a float is extracted) or an NSString.<br>
+	 * That the list can have NSObject of type NSNumber (from which a float is extracted) or an NSString.<br>
 	 * <br>
 	 * So what I do internally is to check all elements of args and convert them to NSNumber if they are
 	 * a Float or an Integer and to NSString if they are a String.<br>
@@ -143,7 +143,7 @@ public class GdxPDiOS implements GdxPD {
 	 * <br>
 	 * 		static void encodeList(NSArray *list)<br>
 	 * <br>
-	 * That the list can have NSObject of type NSNumber (from wich a float is extracted) or an NSString.<br>
+	 * That the list can have NSObject of type NSNumber (from which a float is extracted) or an NSString.<br>
 	 * <br>
 	 * So what I do internally is to check all elements of args and convert them to NSNumber if they are
 	 * a Float or an Integer and to NSString if they are a String.<br>

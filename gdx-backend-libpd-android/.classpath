@@ -4,8 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/gdx-backend-libpd"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PdCore"/>
-	<classpathentry kind="lib" path="libs/android-4.4.jar"/>
 	<classpathentry kind="lib" path="libs/support-v4-19.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/gdx.jar"/>
+	<classpathentry kind="lib" path="libs/android-19.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
