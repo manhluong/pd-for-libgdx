@@ -51,3 +51,9 @@ hs_err_pid*
 ######################
 bin/
 gen/
+
+# GWT #
+#######
+
+war/WEB-INF/classes/
+
