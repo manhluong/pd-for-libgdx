@@ -21,13 +21,13 @@ public class GdxPDiOS implements GdxPD {
 	
 	protected static PdDispatcher dispatcher;
 
-	protected VoidPtr patchPtr;
+	protected static VoidPtr patchPtr;
 	
-	protected int sampleRate;
+	protected static int sampleRate;
 	
-	protected int numChannels;
+	protected static int numChannels;
 	
-	protected boolean mixingEnabled;
+	protected static boolean mixingEnabled;
 	
 	public GdxPDiOS() {
 		sampleRate = 44100;
@@ -47,7 +47,7 @@ public class GdxPDiOS implements GdxPD {
 	 * @param channels Number of channels.
 	 * @param mixing
 	 */
-	public void setAudioParams(int rate, int channels, boolean mixing) {
+	public static void setAudioParams(int rate, int channels, boolean mixing) {
 		sampleRate = rate;
 		numChannels = channels;
 		mixingEnabled = mixing;
