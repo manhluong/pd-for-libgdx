@@ -1,5 +1,6 @@
 package com.luong.gdx.libpd.ios.bindings;
 
+import org.robovm.cocoatouch.foundation.NSObjectProtocol;
 import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.objc.Selector;
 import org.robovm.objc.annotation.BindSelector;
@@ -11,10 +12,10 @@ import org.robovm.rt.bro.annotation.Library;
  * <br>
  * @ protocol PdReceiverDelegate<PdListener>
  * 
- * @author luong
+ * I removed the extension to PdListener to easier things.
  */
 @Library(Library.INTERNAL)
-public interface PdReceiverDelegate extends PdListener {
+public interface PdReceiverDelegate extends NSObjectProtocol /*extends PdListener*/ {
 	/**
 	 * - (void)receivePrint:(NSString *)message;
 	 */

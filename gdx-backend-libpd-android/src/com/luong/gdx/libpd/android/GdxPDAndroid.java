@@ -7,6 +7,7 @@ import org.puredata.android.io.AudioParameters;
 import org.puredata.android.io.PdAudio;
 import org.puredata.android.utils.PdUiDispatcher;
 import org.puredata.core.PdBase;
+import org.puredata.core.PdListener;
 
 import android.content.Context;
 
@@ -31,6 +32,8 @@ public class GdxPDAndroid implements GdxPD {
 		outChannels = 2;
 		ticksPerBuffer = 8;
 		restart = true;
+		dispatcher = new PdUiDispatcher();
+		PdBase.setReceiver(dispatcher);
 		}
 	
 	public GdxPDAndroid(final Context ctx,
@@ -66,13 +69,19 @@ public class GdxPDAndroid implements GdxPD {
 		ticksPerBuffer = ticks;
 		restart = rest;
 		}
+	
+	public static void addListener(String symbol, PdListener listener) {
+		dispatcher.addListener(symbol, listener);
+		}
+	
+	public static void removeListener(String symbol, PdListener listener) {
+		dispatcher.removeListener(symbol, listener);
+		}
 
 	@Override
 	public void init() throws IOException {
 		//Log.d("init()", "Init!");
 		PdAudio.initAudio(sampleRate, inChannels, inChannels, ticksPerBuffer, restart);
-		dispatcher = new PdUiDispatcher();
-		PdBase.setReceiver(dispatcher);
 		}
 
 	@Override

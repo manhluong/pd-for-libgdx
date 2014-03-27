@@ -1,6 +1,5 @@
 package com.luong.gdx.libpd.ios.bindings;
 
-import org.robovm.cocoatouch.foundation.NSArray;
 import org.robovm.cocoatouch.foundation.NSObject;
 import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.objc.ObjCRuntime;
@@ -26,44 +25,19 @@ public class PdDispatcher extends NSObject implements PdReceiverDelegate {
 	public native @Pointer long init();
 
 	@Override
-	public void receiveBangFromSource(NSString source) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
-	public void receiveFloat(float received,
-								NSString source) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
-	public void receiveSymbol(NSString symbol,
-								NSString source) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
-	public void receiveList(NSArray<?> list,
-								NSString source) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
-	public void receiveMessage(NSString message,
-								NSArray<?> arguments,
-								NSString source) {
-		// TODO Auto-generated method stub
-		
-		}
-
-	@Override
 	public void receivePrint(NSString message) {
-		// TODO Auto-generated method stub
-		
+		receivePrintNative(message);
 		}
 	
+	/**
+	 * // Override this method in subclasses if you want different printing behavior.<br>
+	 * // No need to synchronize here.<br>
+	 * - (void)receivePrint:(NSString *)message<br>
+	 * <br>
+	 * You should override the non-native one.<br>
+	 * <br>
+	 * @param message
+	 */
+	@Method(selector = "receivePrint:")
+	public native void receivePrintNative(NSString message);
 	}
