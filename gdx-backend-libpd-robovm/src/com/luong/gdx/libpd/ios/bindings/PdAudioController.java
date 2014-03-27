@@ -22,6 +22,36 @@ public class PdAudioController extends NSObject {
 		}
 	
 	/**
+	 * @property (nonatomic, readonly) int sampleRate;
+	 */
+	@Property(selector = "sampleRate")
+	public native int getSampleRate();
+	
+	/**
+	 * @property (nonatomic, readonly) int numberChannels;
+	 */
+	@Property(selector = "numberChannels")
+	public native int getNumberChannels();
+	
+	/**
+	 * @property (nonatomic, readonly) BOOL inputEnabled;
+	 */
+	@Property(selector = "inputEnabled")
+	public native boolean getInputEnabled();
+	
+	/**
+	 * @property (nonatomic, readonly) BOOL mixingEnabled;
+	 */
+	@Property(selector = "mixingEnabled")
+	public native boolean getMixingEnabled();
+	
+	/**
+	 * @property (nonatomic, readonly) int ticksPerBuffer;
+	 */
+	@Property(selector = "ticksPerBuffer")
+	public native int getTicksPerBuffer();
+	
+	/**
 	 * // Check or set the active status of the audio unit<br>
 	 * @ property (nonatomic, getter=isActive) BOOL active;
 	 */
