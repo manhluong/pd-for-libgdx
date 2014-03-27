@@ -23,14 +23,16 @@ public interface GdxPD {
 	public void stopAudio();
 	
 	/**
-	 * 
+	 * The listener <b>most implement the platform-specific PdListener too</b>.<br>
+	 * The platform-specific implementation simply re-cast the listener to the platform one.
 	 * @param symbol
 	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
 	 */
 	public void addListener(String symbol, PdCommonListener listener);
 	
 	/**
-	 * 
+	 * The listener <b>most implement the platform-specific PdListener too</b>.<br>
+	 * The platform-specific implementation simply re-cast the listener to the platform one.
 	 * @param symbol
 	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
 	 */
