@@ -67,14 +67,22 @@ public class GdxPDiOS implements GdxPD {
 		mixingEnabled = mixing;
 		}
 	
+	public void addiOSListener(String symbol, PdListener listener) {
+		dispatcher.addListener(listener, new NSString(symbol));
+		}
+	
+	public void removeiOSListener(String symbol, PdListener listener) {
+		dispatcher.removeListener(listener, new NSString(symbol));
+		}
+	
 	@Override
 	public void addListener(String symbol, PdCommonListener listener) {
-		dispatcher.addListener((PdListener)listener, new NSString(symbol));
+		addiOSListener(symbol, (com.luong.gdx.libpd.ios.bindings.PdListener) listener);
 		}
 	
 	@Override
 	public void removeListener(String symbol, PdCommonListener listener) {
-		dispatcher.removeListener((PdListener)listener, new NSString(symbol));
+		removeiOSListener(symbol, (com.luong.gdx.libpd.ios.bindings.PdListener) listener);
 		}
 
 	@Override

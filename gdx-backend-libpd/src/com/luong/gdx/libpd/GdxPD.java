@@ -24,7 +24,11 @@ public interface GdxPD {
 	
 	/**
 	 * The listener <b>most implement the platform-specific PdListener too</b>.<br>
-	 * The platform-specific implementation simply re-cast the listener to the platform one.
+	 * The platform-specific implementation simply re-cast the listener to the platform one.<br>
+	 * <br>
+	 * Although is here, it is probably more elegant to add / remove listeners in the platform-specific projects and not in the common one.<br>
+	 * So if you don't like to implement multiple interfaces, just call the platform-specific add / remove directly.<br>
+	 * <br>
 	 * @param symbol
 	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
 	 */
@@ -32,7 +36,11 @@ public interface GdxPD {
 	
 	/**
 	 * The listener <b>most implement the platform-specific PdListener too</b>.<br>
-	 * The platform-specific implementation simply re-cast the listener to the platform one.
+	 * The platform-specific implementation simply re-cast the listener to the platform one.<br>
+	 * <br>
+	 * Although is here, it is probably more elegant to add / remove listeners in the platform-specific projects and not in the common one.<br>
+	 * So if you don't like to implement multiple interfaces, just call the platform-specific add / remove directly.<br>
+	 * <br>
 	 * @param symbol
 	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
 	 */

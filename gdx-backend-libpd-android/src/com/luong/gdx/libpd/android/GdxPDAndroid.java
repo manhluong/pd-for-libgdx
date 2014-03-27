@@ -71,14 +71,23 @@ public class GdxPDAndroid implements GdxPD {
 		restart = rest;
 		}
 	
+	
+	public void addAndroidListener(String symbol, org.puredata.core.PdListener listener) {
+		dispatcher.addListener(symbol, listener);
+		}
+	
+	public void removeAndroidListener(String symbol, org.puredata.core.PdListener listener) {
+		dispatcher.removeListener(symbol, listener);
+		}
+	
 	@Override
 	public void addListener(String symbol, PdCommonListener listener) {
-		dispatcher.addListener(symbol, (PdListener)listener);
+		addAndroidListener(symbol, (org.puredata.core.PdListener) listener);
 		}
 	
 	@Override
 	public void removeListener(String symbol, PdCommonListener listener) {
-		dispatcher.removeListener(symbol, (PdListener)listener);
+		removeAndroidListener(symbol, (org.puredata.core.PdListener) listener);
 		}
 
 	@Override
