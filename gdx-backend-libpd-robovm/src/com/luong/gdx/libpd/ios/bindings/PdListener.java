@@ -8,11 +8,13 @@ import org.robovm.objc.annotation.BindSelector;
 import org.robovm.rt.bro.annotation.Callback;
 import org.robovm.rt.bro.annotation.Library;
 
+import com.luong.gdx.libpd.PdCommonListener;
+
 /**
  * @ protocol PdListener
  */
 @Library(Library.INTERNAL)
-public interface PdListener extends NSObjectProtocol {
+public interface PdListener extends NSObjectProtocol, PdCommonListener {
 	/**
 	 * - (void)receiveBangFromSource:(NSString *)source;
 	 */

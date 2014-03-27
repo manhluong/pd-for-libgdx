@@ -22,6 +22,20 @@ public interface GdxPD {
 	
 	public void stopAudio();
 	
+	/**
+	 * 
+	 * @param symbol
+	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
+	 */
+	public void addListener(String symbol, PdCommonListener listener);
+	
+	/**
+	 * 
+	 * @param symbol
+	 * @param listener Most implements PdCommonListener <b>and</b> the platform-specific PdListener. Otherwise a ClassCastException is thrown.
+	 */
+	public void removeListener(String symbol, PdCommonListener listener);
+	
 	/* SEND METHODS */
 	
 	public int sendBang(String bang);

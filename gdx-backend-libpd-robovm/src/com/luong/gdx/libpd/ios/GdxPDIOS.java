@@ -10,10 +10,12 @@ import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
 import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.PdCommonListener;
 import com.luong.gdx.libpd.ios.bindings.PdAudioController;
 import com.luong.gdx.libpd.ios.bindings.PdAudioStatus;
 import com.luong.gdx.libpd.ios.bindings.PdBase;
 import com.luong.gdx.libpd.ios.bindings.PdDispatcher;
+import com.luong.gdx.libpd.ios.bindings.PdListener;
 
 public class GdxPDiOS implements GdxPD {
 	
@@ -36,9 +38,12 @@ public class GdxPDiOS implements GdxPD {
 		useInChannels = false;
 		numChannels = 2;
 		mixingEnabled = true;
+		dispatcher = new PdDispatcher();
+		PdBase.setDelegate(dispatcher);
 		}
 	
 	public GdxPDiOS(int rate, boolean inChannels, int outChannels, boolean mixing) {
+		this();
 		sampleRate = rate;
 		useInChannels = inChannels;
 		numChannels = outChannels;
@@ -61,6 +66,16 @@ public class GdxPDiOS implements GdxPD {
 		numChannels = outChannels;
 		mixingEnabled = mixing;
 		}
+	
+	@Override
+	public void addListener(String symbol, PdCommonListener listener) {
+		dispatcher.addListener((PdListener)listener, new NSString(symbol));
+		}
+	
+	@Override
+	public void removeListener(String symbol, PdCommonListener listener) {
+		dispatcher.removeListener((PdListener)listener, new NSString(symbol));
+		}
 
 	@Override
 	public void init() throws IOException {
@@ -78,8 +93,6 @@ public class GdxPDiOS implements GdxPD {
 																mixingEnabled) != PdAudioStatus.PdAudioOK)
 				throw new IOException("Failed to initialize audio components!");
 			}
-		dispatcher = new PdDispatcher();
-		PdBase.setDelegate(dispatcher);
 		}
 	
 	@Override

@@ -12,6 +12,7 @@ import org.puredata.core.PdListener;
 import android.content.Context;
 
 import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.PdCommonListener;
 
 public class GdxPDAndroid implements GdxPD {
 	
@@ -70,12 +71,14 @@ public class GdxPDAndroid implements GdxPD {
 		restart = rest;
 		}
 	
-	public static void addListener(String symbol, PdListener listener) {
-		dispatcher.addListener(symbol, listener);
+	@Override
+	public void addListener(String symbol, PdCommonListener listener) {
+		dispatcher.addListener(symbol, (PdListener)listener);
 		}
 	
-	public static void removeListener(String symbol, PdListener listener) {
-		dispatcher.removeListener(symbol, listener);
+	@Override
+	public void removeListener(String symbol, PdCommonListener listener) {
+		dispatcher.removeListener(symbol, (PdListener)listener);
 		}
 
 	@Override
