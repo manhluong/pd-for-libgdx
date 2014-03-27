@@ -25,44 +25,61 @@ public class GdxPDiOS implements GdxPD {
 	
 	protected static int sampleRate;
 	
+	protected static boolean useInChannels;
+	
 	protected static int numChannels;
 	
 	protected static boolean mixingEnabled;
 	
 	public GdxPDiOS() {
 		sampleRate = 44100;
+		useInChannels = false;
 		numChannels = 2;
 		mixingEnabled = true;
 		}
 	
-	public GdxPDiOS(int rate, int channels, boolean mixing) {
+	public GdxPDiOS(int rate, boolean inChannels, int outChannels, boolean mixing) {
 		sampleRate = rate;
-		numChannels = channels;
+		useInChannels = inChannels;
+		numChannels = outChannels;
 		mixingEnabled = mixing;
 		}
 	
 	/**
 	 * Useful if you don't want to set the parameters at instantiation.
 	 * @param rate Sample rate.
-	 * @param channels Number of channels.
+	 * @param
+	 * @param outChannels Number of output channels.
 	 * @param mixing
 	 */
-	public static void setAudioParams(int rate, int channels, boolean mixing) {
+	public static void setAudioParams(int rate,
+										boolean inChannels,
+										int outChannels,
+										boolean mixing) {
 		sampleRate = rate;
-		numChannels = channels;
+		useInChannels = inChannels;
+		numChannels = outChannels;
 		mixingEnabled = mixing;
 		}
 
 	@Override
 	public void init() throws IOException {
 		audioController = new PdAudioController();
-		if(audioController.configureAmbientWithSampleRate(sampleRate, numChannels, mixingEnabled) != PdAudioStatus.PdAudioOK) {
-			throw new IOException("Failed to initialize audio components!");
+		if(!useInChannels) {
+			if(audioController.configureAmbientWithSampleRate(sampleRate,
+																numChannels,
+																mixingEnabled) != PdAudioStatus.PdAudioOK)
+				throw new IOException("Failed to initialize audio components!");
 			}
 		else {
-			dispatcher = new PdDispatcher();
-			PdBase.setDelegate(dispatcher);
+			if(audioController.configurePlaybackWithSampleRate(sampleRate,
+																numChannels,
+																useInChannels,
+																mixingEnabled) != PdAudioStatus.PdAudioOK)
+				throw new IOException("Failed to initialize audio components!");
 			}
+		dispatcher = new PdDispatcher();
+		PdBase.setDelegate(dispatcher);
 		}
 	
 	@Override

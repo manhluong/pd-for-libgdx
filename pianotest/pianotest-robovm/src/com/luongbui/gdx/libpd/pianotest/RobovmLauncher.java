@@ -32,7 +32,7 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 	@Override
 	protected IOSApplication createApplication() {
 		
-		audio = new GdxPDiOS(44100, 2, true);
+		audio = new GdxPDiOS(44100, false, 2, true);
 		
 		IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 		config.orientationLandscape = true;

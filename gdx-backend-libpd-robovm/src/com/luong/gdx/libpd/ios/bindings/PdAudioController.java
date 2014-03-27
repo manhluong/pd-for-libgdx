@@ -45,6 +45,20 @@ public class PdAudioController extends NSObject {
 	public native void dealloc();
 	
 	/**
+	 * // Configure the audio with the specified samplerate, as well as number of output channels (which will also be the number of
+	 * // input channels if input is enable).  Note that this method has three possible outcomes: success, failure, or conditional
+	 * // success, where parameters had to be adjusted to set up the audio.  In the third case, you can query the sample rate and
+	 * // channel properties to determine whether the selected configuration is acceptable.  Specifying mixingEnabled = YES will
+	 * // allow the app to continue playing audio along with other apps (such as iPod music player).
+	 * - (PdAudioStatus)configurePlaybackWithSampleRate:(int)sampleRate
+	 *                                   numberChannels:(int)numChannels
+	 *   								 inputEnabled:(BOOL)inputEnabled
+	 *                                   mixingEnabled:(BOOL)mixingEnabled;
+	 */
+	@Method(selector = "configurePlaybackWithSampleRate:numberChannels:inputEnabled:mixingEnabled:")
+	public native PdAudioStatus configurePlaybackWithSampleRate(int sampleRate, int numChannels, boolean inputEnabled, boolean mixingEnabled);
+	
+	/**
 	 * // Configure audio for ambient use, without input channels.  Specifying mixingEnabled = YES will allow the app to continue
 	 * // playing audio along with other apps (such as iPod music player).
 	 * - (PdAudioStatus)configureAmbientWithSampleRate:(int)sampleRate
@@ -54,5 +68,19 @@ public class PdAudioController extends NSObject {
 	@Method(selector = "configureAmbientWithSampleRate:numberChannels:mixingEnabled:")
 	public native PdAudioStatus configureAmbientWithSampleRate(int sampleRate, int numChannels, boolean mixingEnabled);
 	
+	/**
+	 * // Configure the ticksPerBuffer parameter, which will change the audio sessions IO buffer size.
+	 * // This can be done on the fly, while audio is running.  Note that the audio session only accepts
+	 * // values that correspond to a number of frames that are a power of 2 and sometimes this value
+	 * // is ignored by the audio unit, which tries to work with whatever number of frames it is provided.
+	 * - (PdAudioStatus)configureTicksPerBuffer:(int)ticksPerBuffer;
+	 */
+	@Method(selector = "configureTicksPerBuffer:")
+	public native PdAudioStatus configureTicksPerBuffer(int ticksPerBuffer);
 	
+	/**
+	 * - (void)print;
+	 */
+	@Method(selector = "print")
+	public native void print();
 	}
