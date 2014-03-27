@@ -3,6 +3,7 @@ package com.luong.gdx.libpd.desktop;
 import java.io.IOException;
 
 import com.luong.gdx.libpd.GdxPD;
+import com.luong.gdx.libpd.PdCommonListener;
 
 public class GdxPDDesktop implements GdxPD {
 
@@ -32,6 +33,18 @@ public class GdxPDDesktop implements GdxPD {
 
 	@Override
 	public void stopAudio() {
+		// TODO Auto-generated method stub
+		
+		}
+	
+	@Override
+	public void addListener(String symbol, PdCommonListener listener) {
+		// TODO Auto-generated method stub
+		
+		}
+
+	@Override
+	public void removeListener(String symbol, PdCommonListener listener) {
 		// TODO Auto-generated method stub
 		
 		}
