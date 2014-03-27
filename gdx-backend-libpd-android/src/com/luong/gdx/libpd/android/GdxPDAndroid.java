@@ -3,6 +3,7 @@ package com.luong.gdx.libpd.android;
 import java.io.File;
 import java.io.IOException;
 
+import org.puredata.android.io.AudioParameters;
 import org.puredata.android.io.PdAudio;
 import org.puredata.android.utils.PdUiDispatcher;
 import org.puredata.core.PdBase;
@@ -25,6 +26,11 @@ public class GdxPDAndroid implements GdxPD {
 	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
+		sampleRate = AudioParameters.suggestSampleRate();
+		inChannels = 0;
+		outChannels = 2;
+		ticksPerBuffer = 8;
+		restart = true;
 		}
 	
 	public GdxPDAndroid(final Context ctx,
