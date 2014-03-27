@@ -6,7 +6,7 @@ public interface GdxPD {
 	
 	/**
 	 * Need a separate initialization method because some initialization params are platform-dependent.<br>
-	 * For instance, Context concept is present in Android but not in iOS.<br>
+	 * For instance, Context concept is present in Android but not in iOS. Also, input channels are set differently.<br>
 	 * <br>
 	 * Call this method in the common project of libgdx.<br>
 	 * @throws IOException
