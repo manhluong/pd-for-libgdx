@@ -35,7 +35,7 @@ public class PdBase extends NSObject {
 	public static native void initialize();
 	
 	/**
-	 * PdBase retains the delegate: call setDelegate with nil in order to release delegate.
+	 * PdBase retains the delegate: call setDelegate with nil in order to release delegate.<br>
 	 * + (void)setDelegate:(NSObject<PdReceiverDelegate> *)newDelegate;
 	 */
 	@Method(selector = "setDelegate:")
@@ -74,14 +74,14 @@ public class PdBase extends NSObject {
 	public static native int sendSymbol(NSString symbol, NSString receiverName);
 	
 	/**
-	 * // list may be nil
+	 * // list may be nil<br>
 	 * + (int)sendList:(NSArray *)list toReceiver:(NSString *)receiverName;
 	 */
 	@Method(selector = "sendList:toReceiver:")
 	public static native int sendList(NSArray<?> list, NSString receiverName);
 	
 	/**
-	 * // list may be nil
+	 * // list may be nil<br>
 	 * + (int)sendMessage:(NSString *)message withArguments:(NSArray *)list toReceiver:(NSString *)receiverName;
 	 */
 	@Method(selector = "sendMessage:withArguments:toReceiver:")

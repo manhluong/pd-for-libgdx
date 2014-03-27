@@ -67,9 +67,6 @@ public class GdxPDAndroid implements GdxPD {
 		restart = rest;
 		}
 
-	/**
-	 * Call this in the constructor of the object that holds the implementation of the custom code interface.
-	 */
 	@Override
 	public void init() throws IOException {
 		//Log.d("init()", "Init!");

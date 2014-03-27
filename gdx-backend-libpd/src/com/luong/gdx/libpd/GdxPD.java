@@ -4,6 +4,13 @@ import java.io.IOException;
 
 public interface GdxPD {
 	
+	/**
+	 * Need a separate initialization method because some initialization params are platform-dependent.<br>
+	 * For instance, Context concept is present in Android but not in iOS.<br>
+	 * <br>
+	 * Call this method in the common project of libgdx.<br>
+	 * @throws IOException
+	 */
 	public void init() throws IOException;
 	
 	public void dispose();
