@@ -16,6 +16,8 @@
 
 package com.luongbui.gdx.libpd.pianotest;
 
+import org.puredata.android.io.AudioParameters;
+
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
@@ -31,7 +33,12 @@ public class MainActivity extends AndroidApplication {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        audio = new GdxPDAndroid(this);
+        audio = new GdxPDAndroid(this,
+        							AudioParameters.suggestSampleRate(),
+        							0,
+        							2,
+        							8,
+        							true);
         
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         

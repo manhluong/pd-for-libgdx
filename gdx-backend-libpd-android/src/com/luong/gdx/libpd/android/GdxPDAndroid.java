@@ -3,7 +3,6 @@ package com.luong.gdx.libpd.android;
 import java.io.File;
 import java.io.IOException;
 
-import org.puredata.android.io.AudioParameters;
 import org.puredata.android.io.PdAudio;
 import org.puredata.android.utils.PdUiDispatcher;
 import org.puredata.core.PdBase;
@@ -18,8 +17,48 @@ public class GdxPDAndroid implements GdxPD {
 	
 	protected static PdUiDispatcher dispatcher;
 	
+	protected static int sampleRate;
+	protected static int inChannels;
+	protected static int outChannels;
+	protected static int ticksPerBuffer;
+	protected static boolean restart;
+	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
+		}
+	
+	public GdxPDAndroid(final Context ctx,
+							int rate,
+							int inCh,
+							int outCh,
+							int ticks,
+							boolean rest) {
+		this(ctx);
+		sampleRate = rate;
+		inChannels = inCh;
+		outChannels = outCh;
+		ticksPerBuffer = ticks;
+		restart = rest;
+		}
+	
+	/**
+	 * Useful if you don't want to set the parameters at instantiation.
+	 * @param rate
+	 * @param inCh
+	 * @param outCh
+	 * @param ticks
+	 * @param rest
+	 */
+	public static void setAudioParams(int rate,
+										int inCh,
+										int outCh,
+										int ticks,
+										boolean rest) {
+		sampleRate = rate;
+		inChannels = inCh;
+		outChannels = outCh;
+		ticksPerBuffer = ticks;
+		restart = rest;
 		}
 
 	/**
@@ -28,8 +67,7 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public void init() throws IOException {
 		//Log.d("init()", "Init!");
-		int sampleRate = AudioParameters.suggestSampleRate();
-		PdAudio.initAudio(sampleRate, 0, 2, 8, true);
+		PdAudio.initAudio(sampleRate, inChannels, inChannels, ticksPerBuffer, restart);
 		dispatcher = new PdUiDispatcher();
 		PdBase.setReceiver(dispatcher);
 		}
