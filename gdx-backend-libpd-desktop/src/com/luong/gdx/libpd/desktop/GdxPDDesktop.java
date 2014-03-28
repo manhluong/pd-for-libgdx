@@ -79,4 +79,30 @@ public class GdxPDDesktop implements GdxPD {
 		return 0;
 		}
 
+	@Override
+   public int arraySize(String name) {
+	   // TODO Auto-generated method stub
+	   return 0;
+   }
+
+	@Override
+   public int readArray(float[] destination,
+   								int destOffset,
+   								String source,
+   								int srcOffset,
+   								int n) {
+	   // TODO Auto-generated method stub
+	   return 0;
+   	}
+
+	@Override
+   public int writeArray(String destination,
+   								int destOffset,
+   								float[] source,
+   								int srcOffset,
+   								int n) {
+	   // TODO Auto-generated method stub
+	   return 0;
+   	}
+
 	}
