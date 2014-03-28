@@ -7,6 +7,7 @@ import org.robovm.objc.ObjCRuntime;
 import org.robovm.objc.annotation.Method;
 import org.robovm.objc.annotation.NativeClass;
 import org.robovm.rt.bro.annotation.Library;
+import org.robovm.rt.bro.ptr.FloatPtr;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
 
@@ -86,4 +87,22 @@ public class PdBase extends NSObject {
 	 */
 	@Method(selector = "sendMessage:withArguments:toReceiver:")
 	public static native int sendMessage(NSString message, NSArray<?> list, NSString receiverName);
+	
+	/**
+	 * + (int)arraySizeForArrayNamed:(NSString *)arrayName;
+	 */
+	@Method(selector = "arraySizeForArrayNamed:")
+	public static native int arraySizeForArrayNamed(NSString arrayName);
+	
+	/**
+	 * + (int)copyArrayNamed:(NSString *)arrayName withOffset:(int)offset toArray:(float *)destinationArray count:(int)n;
+	 */
+	@Method(selector = "copyArrayNamed:withOffset:toArray:count:")
+	public static native int copyArrayNamed(NSString arrayName, int offset, FloatPtr destinationArray, int n);
+
+	/**
+	 * + (int)copyArray:(float *)sourceArray toArrayNamed:(NSString *)arrayName withOffset:(int)offset count:(int)n;
+	 */
+	@Method(selector = "copyArray:toArrayNamed:withOffset:count:")
+	public static native int copyArray(FloatPtr sourceArray, NSString arrayName, int offset, int n);
 	}
