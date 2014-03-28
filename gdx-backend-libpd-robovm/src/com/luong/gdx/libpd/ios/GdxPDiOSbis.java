@@ -17,7 +17,7 @@ import com.luong.gdx.libpd.ios.bindings.PdBase;
 import com.luong.gdx.libpd.ios.bindings.PdDispatcher;
 import com.luong.gdx.libpd.ios.bindings.PdListener;
 
-public class GdxPDiOS implements GdxPD {
+public class GdxPDiOSbis implements GdxPD {
 	
 	protected static PdAudioController audioController;
 	
@@ -33,7 +33,7 @@ public class GdxPDiOS implements GdxPD {
 	
 	protected static boolean mixingEnabled;
 	
-	public GdxPDiOS() {
+	public GdxPDiOSbis() {
 		sampleRate = 44100;
 		useInChannels = false;
 		numChannels = 2;
@@ -42,7 +42,7 @@ public class GdxPDiOS implements GdxPD {
 		PdBase.setDelegate(dispatcher);
 		}
 	
-	public GdxPDiOS(int rate, boolean inChannels, int outChannels, boolean mixing) {
+	public GdxPDiOSbis(int rate, boolean inChannels, int outChannels, boolean mixing) {
 		this();
 		sampleRate = rate;
 		useInChannels = inChannels;
