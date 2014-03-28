@@ -7,6 +7,8 @@ import org.robovm.cocoatouch.foundation.NSBundle;
 import org.robovm.cocoatouch.foundation.NSNumber;
 import org.robovm.cocoatouch.foundation.NSObject;
 import org.robovm.cocoatouch.foundation.NSString;
+import org.robovm.rt.bro.Struct;
+import org.robovm.rt.bro.ptr.FloatPtr;
 import org.robovm.rt.bro.ptr.VoidPtr;
 
 import com.luong.gdx.libpd.GdxPD;
@@ -201,4 +203,48 @@ public class GdxPDiOS implements GdxPD {
 			}
 		return PdBase.sendMessage(new NSString(msg), list, new NSString(recv));
 		}
+
+	@Override
+   public int arraySize(String name) {
+	   return PdBase.arraySizeForArrayNamed(new NSString(name));
+   	}
+
+	/**
+	 * TODO I have to rethink this, as I am allocating another array. Each time.
+	 */
+	@Override
+   public int readArray(float[] destination,
+   								int destOffset,
+   								String source,
+   								int srcOffset,
+   								int n) {
+		if (destOffset < 0 || destOffset + n > destination.length)
+	      return -2;
+		FloatPtr destBuf = Struct.allocate(FloatPtr.class, n);
+		int res = PdBase.copyArrayNamed(new NSString(source), srcOffset, destBuf, n);
+		for(int index = destOffset; index<n; index++) {
+			destination[index] = destBuf.get();
+			destBuf.next();
+			}
+	   return res;
+   	}
+
+	/**
+	 * TODO I have to rethink this, as I am allocating another array. Each time.
+	 */
+	@Override
+   public int writeArray(String destination,
+   								int destOffset,
+   								float[] source,
+   								int srcOffset,
+   								int n) {
+		if (srcOffset < 0 || srcOffset + n > source.length)
+			return -2;
+		FloatPtr srcBuf = Struct.allocate(FloatPtr.class, n);
+		for(int index = srcOffset; index<n; index++) {
+			srcBuf.set(source[index]);
+			srcBuf.next();
+			}
+	   return PdBase.copyArray(srcBuf, new NSString(destination), destOffset, n);
+   	}
 	}

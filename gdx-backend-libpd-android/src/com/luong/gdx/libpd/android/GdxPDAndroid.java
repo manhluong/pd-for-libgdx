@@ -155,4 +155,27 @@ public class GdxPDAndroid implements GdxPD {
 	public int sendMessage(String recv, String msg, Object... args) {
 		return PdBase.sendMessage(recv, msg, args);
 		}
+
+	@Override
+   public int arraySize(String name) {
+	   return PdBase.arraySize(name);
+   	}
+
+	@Override
+   public int readArray(float[] destination,
+   							int destOffset,
+   							String source,
+   							int srcOffset,
+   							int n) {
+	   return PdBase.readArray(destination, destOffset, source, srcOffset, n);
+		}
+
+	@Override
+   public int writeArray(String destination,
+   								int destOffset,
+   								float[] source,
+   								int srcOffset,
+   								int n) {
+	   return PdBase.writeArray(destination, destOffset, source, srcOffset, n);
+   	}
 	}

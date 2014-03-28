@@ -70,4 +70,10 @@ public interface GdxPD {
 	 * @return
 	 */
 	public int sendMessage(String recv, String msg, Object... args);
+	
+	public int arraySize(String name);
+	
+	public int readArray(float[] destination, int destOffset, String source, int srcOffset, int n);
+	
+	public int writeArray(String destination, int destOffset, float[] source, int srcOffset, int n);
 	}
