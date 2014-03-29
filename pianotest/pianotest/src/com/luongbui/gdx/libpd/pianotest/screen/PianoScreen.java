@@ -33,6 +33,17 @@ public class PianoScreen implements Screen {
 	
 	public static final int KEYS_NUM = 8;
 	
+	private static final float HERTZ[] = {
+													440.000f,
+													493.883f,
+													523.251f,
+													587.330f,
+													659.255f,
+													698.456f,
+													783.991f,
+													880.000f
+													};
+	
 	private final PianoTest game;
 	
 	private Stage stage;
@@ -53,7 +64,7 @@ public class PianoScreen implements Screen {
 									1,
 									WIDTH_VIRTUAL/KEYS_NUM,
 									HEIGHT_VIRTUAL-1,
-									(440f + i*60),
+									HERTZ[i],
 									game);
 			stage.addActor(keys[i]);
 			}
