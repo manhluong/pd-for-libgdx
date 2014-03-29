@@ -108,7 +108,7 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public void init() throws IOException {
 		//Log.d("init()", "Init!");
-		PdAudio.initAudio(sampleRate, inChannels, inChannels, ticksPerBuffer, restart);
+		PdAudio.initAudio(sampleRate, inChannels, outChannels, ticksPerBuffer, restart);
 		}
 
 	@Override
