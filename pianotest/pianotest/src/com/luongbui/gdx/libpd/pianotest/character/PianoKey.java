@@ -35,16 +35,20 @@ public class PianoKey extends Actor {
 	
 	private float hertz;
 	
+	private int noteNumber;
+	
 	public PianoKey(float x,
 					float y,
 					float width,
 					float height,
 					float hertz,
+					int noteNumber,
 					final PianoTest game) {
 		
 		renderer = new ShapeRenderer();
 		isPressed = false;
 		this.hertz = hertz;
+		this.noteNumber = noteNumber;
 		this.game = game;
 		
 		final PianoKey thisPtr = this;
@@ -54,9 +58,9 @@ public class PianoKey extends Actor {
 			@Override
 		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				isPressed = true;
-				game.getAudioEngine().sendBang("stop");
-				game.getAudioEngine().sendFloat("freq", thisPtr.getHertz());
-				game.getAudioEngine().sendBang("trig");
+				//game.getAudioEngine().sendBang("stop"+thisPtr.getNoteNumber());
+				game.getAudioEngine().sendFloat("freq"+thisPtr.getNoteNumber(), thisPtr.getHertz());
+				game.getAudioEngine().sendBang("trig"+thisPtr.getNoteNumber());
 		    	}
 			
 			@Override
@@ -95,5 +99,9 @@ public class PianoKey extends Actor {
 	
 	public float getHertz() {
 		return hertz;
+		}
+	
+	public int getNoteNumber() {
+		return noteNumber;
 		}
 	}

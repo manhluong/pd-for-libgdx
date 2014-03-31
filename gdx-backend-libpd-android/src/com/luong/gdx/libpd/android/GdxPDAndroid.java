@@ -17,7 +17,10 @@
 package com.luong.gdx.libpd.android;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.puredata.android.io.AudioParameters;
 import org.puredata.android.io.PdAudio;
@@ -121,7 +124,9 @@ public class GdxPDAndroid implements GdxPD {
 
 	/**
 	 * Call this inside create() method of GDX lifecycle.<br>
-	 * Ensure that the framework created a Gdx object when called.
+	 * Ensure that the framework created a Gdx object when called.<br>
+	 * 
+	 * TODO Copy Assets somewhere!
 	 */
 	@Override
 	public void loadPatch(String patchName) throws IOException {
@@ -132,6 +137,46 @@ public class GdxPDAndroid implements GdxPD {
 		File patchFile = new File(dir, patchName);
 		PdBase.openPatch(patchFile.getAbsolutePath());
 		}
+	
+	/**
+	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
+	 */
+	private void copyAssets() {
+		android.content.res.AssetManager assetManager = context.getAssets();
+		String[] files = null;
+		try {
+			files = assetManager.list("");
+			}
+		catch (IOException e) {
+			android.util.Log.e("copyAssets()", "Failed to get asset file list.", e);
+			}
+		for(String filename : files) {
+			InputStream in = null;
+			OutputStream out = null;
+			try {
+				in = assetManager.open(filename);
+				File outFile = new File(context.getFilesDir(), filename);
+				out = new FileOutputStream(outFile);
+				copyFile(in, out);
+				in.close();
+				in = null;
+				out.flush();
+				out.close();
+				out = null;
+				}
+			catch(IOException e) {
+			    android.util.Log.e("copyAssets()", "Failed to copy asset file: " + filename, e);
+				}       
+			}
+	    }
+	
+    private void copyFile(InputStream in, OutputStream out) throws IOException {
+       byte[] buffer = new byte[1024];
+       int read;
+       while((read = in.read(buffer)) != -1) {
+          out.write(buffer, 0, read);
+          }
+       }
 
 	@Override
 	public void startAudio() {
@@ -147,13 +192,13 @@ public class GdxPDAndroid implements GdxPD {
 
 	@Override
 	public int sendBang(String bang) {
-		//Log.d("sendBang()", bang);
+		android.util.Log.d("sendBang()", bang);
 		return PdBase.sendBang(bang);
 		}
 	
 	@Override
 	public int sendFloat(String label, float number) {
-		//Log.d("sendFloat()", label + ": " + number);
+		android.util.Log.d("sendFloat()", label + ": " + number);
 		return PdBase.sendFloat(label, number);
 		}
 	
