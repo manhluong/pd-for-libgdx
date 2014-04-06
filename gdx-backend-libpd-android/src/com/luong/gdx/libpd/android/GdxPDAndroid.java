@@ -44,6 +44,12 @@ public class GdxPDAndroid implements GdxPD {
 	protected static int ticksPerBuffer;
 	protected static boolean restart;
 	
+	/**
+	 * Base sub folder of Assets folder containing all Pure Data resource files (patches, audio files, ecc.).<br>
+	 * This folder will be copied in Context.getFilesDir() in load phase.<br>
+	 */
+	protected static String basePureDataAssetsDir;
+	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
 		sampleRate = AudioParameters.suggestSampleRate();
@@ -60,13 +66,15 @@ public class GdxPDAndroid implements GdxPD {
 							int inCh,
 							int outCh,
 							int ticks,
-							boolean rest) {
+							boolean rest,
+							String pureDataDir) {
 		this(ctx);
 		sampleRate = rate;
 		inChannels = inCh;
 		outChannels = outCh;
 		ticksPerBuffer = ticks;
 		restart = rest;
+		basePureDataAssetsDir = pureDataDir;
 		}
 	
 	/**
@@ -131,7 +139,10 @@ public class GdxPDAndroid implements GdxPD {
 	@Override
 	public void loadPatch(String patchName) throws IOException {
 		//Log.d("loadPatch()", "Load!");
+	   // Prepare the sub dir for Pure Data.
 		File dir = context.getFilesDir();
+		dir = new File(dir.getAbsoluteFile() + File.separator + basePureDataAssetsDir);
+		dir.mkdir();
 		//if(zipName!=null)
 		//	IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
 		File patchFile = new File(dir, patchName);
@@ -141,7 +152,7 @@ public class GdxPDAndroid implements GdxPD {
 	/**
 	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
 	 */
-	private void copyAssets() {
+	protected void copyAssets() {
 		android.content.res.AssetManager assetManager = context.getAssets();
 		String[] files = null;
 		try {
