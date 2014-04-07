@@ -152,32 +152,20 @@ public class GdxPDAndroid implements GdxPD {
 	/**
 	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
 	 */
-	protected void copyAssets() {
+	protected void copyAssets() throws IOException {
 		android.content.res.AssetManager assetManager = context.getAssets();
 		String[] files = null;
-		try {
-			files = assetManager.list("");
-			}
-		catch (IOException e) {
-			android.util.Log.e("copyAssets()", "Failed to get asset file list.", e);
-			}
+		files = assetManager.list("");
 		for(String filename : files) {
-			InputStream in = null;
-			OutputStream out = null;
-			try {
-				in = assetManager.open(filename);
-				File outFile = new File(context.getFilesDir(), filename);
-				out = new FileOutputStream(outFile);
-				copyFile(in, out);
-				in.close();
-				in = null;
-				out.flush();
-				out.close();
-				out = null;
-				}
-			catch(IOException e) {
-			    android.util.Log.e("copyAssets()", "Failed to copy asset file: " + filename, e);
-				}       
+			InputStream in = assetManager.open(filename);
+			File outFile = new File(context.getFilesDir(), filename);
+			OutputStream out = new FileOutputStream(outFile);
+			copyFile(in, out);
+			in.close();
+			in = null;
+			out.flush();
+			out.close();
+			out = null;
 			}
 	    }
 	
