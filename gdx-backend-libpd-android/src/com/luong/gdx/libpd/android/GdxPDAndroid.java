@@ -151,31 +151,61 @@ public class GdxPDAndroid implements GdxPD {
 	
 	/**
 	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
+	 * 
+	 * @param subPath A relative path within the assets. Can be a directory: "pure_data".
+	 * @throws IOException
 	 */
-	protected void copyAssets() throws IOException {
+	protected void copyAssets(String subPath) throws IOException {
 		android.content.res.AssetManager assetManager = context.getAssets();
-		String[] files = null;
-		files = assetManager.list("");
-		for(String filename : files) {
-			InputStream in = assetManager.open(filename);
-			File outFile = new File(context.getFilesDir(), filename);
-			OutputStream out = new FileOutputStream(outFile);
-			copyFile(in, out);
-			in.close();
-			in = null;
-			out.flush();
-			out.close();
-			out = null;
-			}
-	    }
+		String[] files = assetManager.list(subPath);
+		if (files.length == 0) // It's a file.
+		   copyFileToDataDir(assetManager, subPath);
+		else {
+		   // Create the new output directory to store the copied files.
+		   File outDir = new File(context.getFilesDir(), subPath);
+		   if(!outDir.exists())
+		      outDir.mkdir();
+		   // Copy each asset.
+		   // From Android doc, each element of files[] is relative to "subPath".
+		   for(String fileName : files) {
+		      copyAssets(subPath + File.separator + fileName);
+			   }
+		   }
+		}
 	
-    private void copyFile(InputStream in, OutputStream out) throws IOException {
-       byte[] buffer = new byte[1024];
-       int read;
-       while((read = in.read(buffer)) != -1) {
-          out.write(buffer, 0, read);
-          }
-       }
+	/**
+	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
+	 * 
+	 * @param assetManager
+	 * @param fileName
+	 * @throws IOException
+	 */
+	protected void copyFileToDataDir(android.content.res.AssetManager assetManager,
+	                                    String fileName) throws IOException {
+	   InputStream in = assetManager.open(fileName);
+      File outFile = new File(context.getFilesDir(), fileName);
+      OutputStream out = new FileOutputStream(outFile);
+      streamCopy(in, out);
+      in.close();
+      in = null;
+      out.flush();
+      out.close();
+      out = null;
+	   }
+
+	/**
+	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
+	 * 
+	 * @param in
+	 * @param out
+	 * @throws IOException
+	 */
+	protected void streamCopy(InputStream in, OutputStream out) throws IOException {
+	   byte[] buffer = new byte[1024];
+	   int read;
+	   for(;(read = in.read(buffer)) != -1;)
+	      out.write(buffer, 0, read);
+	   }
 
 	@Override
 	public void startAudio() {
