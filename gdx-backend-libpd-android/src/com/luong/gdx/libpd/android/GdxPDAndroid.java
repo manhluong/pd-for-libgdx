@@ -133,18 +133,18 @@ public class GdxPDAndroid implements GdxPD {
 	/**
 	 * Call this inside create() method of GDX lifecycle.<br>
 	 * Ensure that the framework created a Gdx object when called.<br>
-	 * 
-	 * TODO Copy Assets somewhere!
+	 * <br>
+	 * Before opening the patch, it copies all assets at the given basePureDataAssetsDir, through copyAssets().
 	 */
 	@Override
 	public void loadPatch(String patchName) throws IOException {
 		//Log.d("loadPatch()", "Load!");
-	   // Prepare the sub dir for Pure Data.
-		File dir = context.getFilesDir();
-		dir = new File(dir.getAbsoluteFile() + File.separator + basePureDataAssetsDir);
-		dir.mkdir();
 		//if(zipName!=null)
 		//	IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);
+	   copyAssets(basePureDataAssetsDir);
+	   File dir = context.getFilesDir();
+      dir = new File(dir.getAbsoluteFile() + File.separator + basePureDataAssetsDir);
+      dir.mkdir();
 		File patchFile = new File(dir, patchName);
 		PdBase.openPatch(patchFile.getAbsolutePath());
 		}
