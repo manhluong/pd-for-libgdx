@@ -177,15 +177,19 @@ public class GdxPDAndroid implements GdxPD {
 	 * From here: http://stackoverflow.com/questions/4447477/android-how-to-copy-files-in-assets-to-sdcard
 	 * 
 	 * @param assetManager
-	 * @param fileName
+	 * @param fileName Relative to assets folder.
 	 * @throws IOException
 	 */
 	protected void copyFileToDataDir(android.content.res.AssetManager assetManager,
 	                                    String fileName) throws IOException {
+	   // Open the asset file.
 	   InputStream in = assetManager.open(fileName);
+	   // Open the target file.
       File outFile = new File(context.getFilesDir(), fileName);
       OutputStream out = new FileOutputStream(outFile);
+      // Actual copy.
       streamCopy(in, out);
+      // Close everything.
       in.close();
       in = null;
       out.flush();
@@ -201,8 +205,10 @@ public class GdxPDAndroid implements GdxPD {
 	 * @throws IOException
 	 */
 	protected void streamCopy(InputStream in, OutputStream out) throws IOException {
+	   // Transfer chunks of 1024 bytes.
 	   byte[] buffer = new byte[1024];
 	   int read;
+	   // Transfer between streams.
 	   for(;(read = in.read(buffer)) != -1;)
 	      out.write(buffer, 0, read);
 	   }
