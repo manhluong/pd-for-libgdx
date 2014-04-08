@@ -29,6 +29,8 @@ public class PianoKey extends Actor {
 	
 	private final PianoTest game;
 	
+	private static int lastPlayed;
+	
 	private ShapeRenderer renderer;
 	
 	private boolean isPressed;
@@ -58,9 +60,10 @@ public class PianoKey extends Actor {
 			@Override
 		    public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
 				isPressed = true;
-				//game.getAudioEngine().sendBang("stop"+thisPtr.getNoteNumber());
+				game.getAudioEngine().sendBang("stop"+PianoKey.getLastPlayed());
 				game.getAudioEngine().sendFloat("freq"+thisPtr.getNoteNumber(), thisPtr.getHertz());
 				game.getAudioEngine().sendBang("trig"+thisPtr.getNoteNumber());
+				PianoKey.setLastPlayed(thisPtr.getNoteNumber());
 		    	}
 			
 			@Override
@@ -104,4 +107,12 @@ public class PianoKey extends Actor {
 	public int getNoteNumber() {
 		return noteNumber;
 		}
+	
+	public static void setLastPlayed(int note) {
+	   lastPlayed = note;
+	   }
+	
+	public static int getLastPlayed() {
+	   return lastPlayed;
+	   }
 	}
