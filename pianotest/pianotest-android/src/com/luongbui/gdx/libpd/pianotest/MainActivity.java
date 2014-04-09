@@ -38,8 +38,7 @@ public class MainActivity extends AndroidApplication {
         							0,
         							2,
         							8,
-        							true,
-        							"pure_data");
+        							true);
         
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         

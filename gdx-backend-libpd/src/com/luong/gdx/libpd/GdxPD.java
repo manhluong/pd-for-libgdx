@@ -32,7 +32,14 @@ public interface GdxPD {
 	
 	public void dispose();
 	
-	public void loadPatch(String patchName) throws IOException;
+	/**
+	 * 
+	 * @param basePureDataAssetsDir Base sub folder of Assets folder containing all Pure Data resource files (patches, audio files, ecc.).
+	 *                              This folder will be copied in Context.getFilesDir() in load phase, for Android backend.
+	 * @param patchName
+	 * @throws IOException
+	 */
+	public void loadPatch(String basePureDataAssetsDir, String patchName) throws IOException;
 	
 	public void startAudio();
 	

@@ -44,12 +44,6 @@ public class GdxPDAndroid implements GdxPD {
 	protected static int ticksPerBuffer;
 	protected static boolean restart;
 	
-	/**
-	 * Base sub folder of Assets folder containing all Pure Data resource files (patches, audio files, ecc.).<br>
-	 * This folder will be copied in Context.getFilesDir() in load phase.<br>
-	 */
-	protected static String basePureDataAssetsDir;
-	
 	public GdxPDAndroid(final Context ctx) {
 		context = ctx;
 		sampleRate = AudioParameters.suggestSampleRate();
@@ -66,15 +60,13 @@ public class GdxPDAndroid implements GdxPD {
 							int inCh,
 							int outCh,
 							int ticks,
-							boolean rest,
-							String pureDataDir) {
+							boolean rest) {
 		this(ctx);
 		sampleRate = rate;
 		inChannels = inCh;
 		outChannels = outCh;
 		ticksPerBuffer = ticks;
 		restart = rest;
-		basePureDataAssetsDir = pureDataDir;
 		}
 	
 	/**
@@ -137,7 +129,7 @@ public class GdxPDAndroid implements GdxPD {
 	 * Before opening the patch, it copies all assets at the given basePureDataAssetsDir, through copyAssets().
 	 */
 	@Override
-	public void loadPatch(String patchName) throws IOException {
+	public void loadPatch(String basePureDataAssetsDir, String patchName) throws IOException {
 		//Log.d("loadPatch()", "Load!");
 		//if(zipName!=null)
 		//	IoUtils.extractZipResource(Gdx.files.internal(zipName).read(), dir, true);

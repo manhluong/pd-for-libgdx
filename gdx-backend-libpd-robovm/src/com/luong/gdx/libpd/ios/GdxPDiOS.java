@@ -122,9 +122,9 @@ public class GdxPDiOS implements GdxPD {
 		}
 	
 	@Override
-	public void loadPatch(String patchName) throws IOException {
+	public void loadPatch(String basePureDataAssetsDir, String patchName) throws IOException {
 		patchPtr = PdBase.openFile(new NSString(patchName),
-									new NSString(NSBundle.getMainBundle().getResourcePath()));
+									new NSString(NSBundle.getMainBundle().getResourcePath() + "/" + basePureDataAssetsDir));
 		if(patchPtr == null)
 			throw new IOException("Failed to open patch!");
 		}

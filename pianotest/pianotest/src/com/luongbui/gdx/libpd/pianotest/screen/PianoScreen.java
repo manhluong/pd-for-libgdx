@@ -65,7 +65,6 @@ public class PianoScreen implements Screen {
 									WIDTH_VIRTUAL/KEYS_NUM,
 									HEIGHT_VIRTUAL-1,
 									HERTZ[i],
-									i,
 									game);
 			stage.addActor(keys[i]);
 			}

@@ -46,7 +46,7 @@ public class PianoTest extends Game {
 	public void create() {
 		mainScreen = new PianoScreen(this);
 		try {
-			audio.loadPatch("piano_test.pd");
+			audio.loadPatch("pure_data", "piano_test.pd");
 			}
 		catch (IOException e) {
 			e.printStackTrace();
