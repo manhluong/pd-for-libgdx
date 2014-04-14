@@ -36,7 +36,7 @@ public class GdxPDDesktop implements GdxPD {
 		}
 
 	@Override
-	public void loadPatch(String patchName) throws IOException {
+	public void loadPatch(String basePureDataAssetsDir, String patchName) throws IOException {
 		// TODO Auto-generated method stub
 		
 		}
