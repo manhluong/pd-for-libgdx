@@ -16,28 +16,35 @@
 
 package com.luongbui.gdx.libpd.pianotest;
 
+import org.robovm.cocoatouch.foundation.NSArray;
 import org.robovm.cocoatouch.foundation.NSAutoreleasePool;
+import org.robovm.cocoatouch.foundation.NSString;
 import org.robovm.cocoatouch.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-
 import com.luong.gdx.libpd.GdxPD;
 import com.luong.gdx.libpd.ios.GdxPDiOS;
+import com.luong.gdx.libpd.ios.bindings.PdListener;
 
-public class RobovmLauncher extends IOSApplication.Delegate {
+public class RobovmLauncher extends IOSApplication.Delegate implements PdListener {
 	
 	private GdxPD audio;
+	
+	private PianoTest game;
 	
 	@Override
 	protected IOSApplication createApplication() {
 		
 		audio = new GdxPDiOS(44100, false, 2, true);
+		((GdxPDiOS)audio).addiOSListener("light", this);
+      ((GdxPDiOS)audio).addiOSListener("dark", this);
+      game = new PianoTest(audio);
 		
 		IOSApplicationConfiguration config = new IOSApplicationConfiguration();
 		config.orientationLandscape = true;
 		config.orientationPortrait = false;
-		return new IOSApplication(new PianoTest(audio), config);
+		return new IOSApplication(game, config);
 		}
 	
 	@Override
@@ -63,4 +70,31 @@ public class RobovmLauncher extends IOSApplication.Delegate {
 		UIApplication.main(argv, null, RobovmLauncher.class);
 		pool.drain();
 		}
+
+   @Override
+   public void receiveBangFromSource(NSString source) {
+      game.switchTheme();
+      }
+
+   @Override
+   public void receiveFloat(float received, NSString source) {
+      
+      }
+
+   @Override
+   public void receiveSymbol(NSString symbol, NSString source) {
+      
+      }
+
+   @Override
+   public void receiveList(NSArray<?> list, NSString source) {
+      
+      }
+
+   @Override
+   public void receiveMessage(NSString message,
+                              NSArray<?> arguments,
+                              NSString source) {
+      
+      }
 	}
