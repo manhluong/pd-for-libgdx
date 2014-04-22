@@ -219,13 +219,13 @@ public class GdxPDAndroid implements GdxPD {
 
 	@Override
 	public int sendBang(String bang) {
-		android.util.Log.d("sendBang()", bang);
+		//android.util.Log.d("sendBang()", bang);
 		return PdBase.sendBang(bang);
 		}
 	
 	@Override
 	public int sendFloat(String label, float number) {
-		android.util.Log.d("sendFloat()", label + ": " + number);
+		//android.util.Log.d("sendFloat()", label + ": " + number);
 		return PdBase.sendFloat(label, number);
 		}
 	
