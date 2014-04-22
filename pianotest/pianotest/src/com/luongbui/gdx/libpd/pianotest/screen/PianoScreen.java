@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Scaling;
 import com.luongbui.gdx.libpd.pianotest.PianoTest;
 import com.luongbui.gdx.libpd.pianotest.character.PianoKey;
+import com.luongbui.gdx.libpd.pianotest.character.SwitchButton;
 
 public class PianoScreen implements Screen {
 	
@@ -50,6 +51,8 @@ public class PianoScreen implements Screen {
 	
 	private PianoKey keys[];
 	
+	private SwitchButton switchBtn;
+	
 	private int viewportX;
 	private int viewportY;
 	private int viewportWidth;
@@ -60,14 +63,20 @@ public class PianoScreen implements Screen {
 		stage = new Stage();
 		keys = new PianoKey[KEYS_NUM];
 		for(int i=0; i<keys.length; i++) {
-			keys[i] = new PianoKey(((WIDTH_VIRTUAL/KEYS_NUM)*i)+1,
+			keys[i] = new PianoKey(((WIDTH_VIRTUAL/(KEYS_NUM+1))*(i+1))+1,
 									1,
-									WIDTH_VIRTUAL/KEYS_NUM,
+									WIDTH_VIRTUAL/(KEYS_NUM+1),
 									HEIGHT_VIRTUAL-1,
 									HERTZ[i],
 									game);
 			stage.addActor(keys[i]);
 			}
+		switchBtn = new SwitchButton(1,
+		                              (HEIGHT_VIRTUAL-1)/2,
+		                              WIDTH_VIRTUAL/(KEYS_NUM+1),
+		                              (HEIGHT_VIRTUAL-1)/2,
+		                              game);
+		stage.addActor(switchBtn);
 		Gdx.input.setInputProcessor(stage);
 		}
 

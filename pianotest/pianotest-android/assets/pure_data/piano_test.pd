@@ -1,4 +1,4 @@
-#N canvas -84 22 1440 852 10;
+#N canvas 0 22 1440 852 10;
 #X obj 460 249 dac~;
 #X obj 460 120 vline~;
 #X obj 551 152 osc~;
@@ -22,15 +22,20 @@ language governing permissions and limitations under the License.;
 #X obj 408 16 r stop;
 #X obj 460 17 r trig;
 #X obj 551 88 r freq;
-#X obj 618 159 select 0 1;
-#X obj 618 15 bng 15 250 50 0 empty switch r_switch 17 7 0 10 -262144
+#X obj 618 177 select 0 1;
+#X obj 618 42 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 618 68 float;
+#X obj 678 67 + 1;
+#X obj 618 104 mod 2;
+#X floatatom 618 140 5 0 0 0 - - -;
+#X obj 618 17 r switch;
+#X obj 618 203 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 618 50 float;
-#X obj 678 49 + 1;
-#X obj 618 86 mod 2;
-#X floatatom 618 122 5 0 0 0 - - -;
-#X obj 618 235 s light;
-#X obj 646 203 s dark;
+#X obj 646 203 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 618 253 s dark;
+#X obj 646 228 s light;
 #X connect 1 0 8 0;
 #X connect 2 0 8 1;
 #X connect 3 0 2 0;
@@ -44,11 +49,14 @@ language governing permissions and limitations under the License.;
 #X connect 11 0 7 0;
 #X connect 12 0 4 0;
 #X connect 13 0 3 0;
-#X connect 14 0 20 0;
-#X connect 14 1 21 0;
+#X connect 14 0 21 0;
+#X connect 14 1 22 0;
 #X connect 15 0 16 0;
 #X connect 16 0 17 0;
 #X connect 16 0 18 0;
 #X connect 17 0 16 1;
 #X connect 18 0 19 0;
 #X connect 19 0 14 0;
+#X connect 20 0 15 0;
+#X connect 21 0 23 0;
+#X connect 22 0 24 0;
