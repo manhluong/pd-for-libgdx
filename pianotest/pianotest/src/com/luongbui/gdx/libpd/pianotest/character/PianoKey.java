@@ -33,6 +33,8 @@ public class PianoKey extends Actor {
 	
 	private boolean isPressed;
 	
+	private boolean isLight;
+	
 	private float hertz;
 	
 	public PianoKey(float x,
@@ -44,6 +46,7 @@ public class PianoKey extends Actor {
 		
 		renderer = new ShapeRenderer();
 		isPressed = false;
+		isLight = true;
 		this.hertz = hertz;
 		this.game = game;
 		
@@ -75,25 +78,38 @@ public class PianoKey extends Actor {
 	@Override
 	public void draw(Batch batch, float delta) {
 		
-		batch.end();
+	   batch.end();
 
-	    renderer.setProjectionMatrix(batch.getProjectionMatrix());
-	    renderer.setTransformMatrix(batch.getTransformMatrix());
-	    renderer.translate(getX(), getY(), 0);
+	   renderer.setProjectionMatrix(batch.getProjectionMatrix());
+	   renderer.setTransformMatrix(batch.getTransformMatrix());
+	   renderer.translate(getX(), getY(), 0);
 
-	    if(!isPressed)
-	    	renderer.begin(ShapeType.Line);
-	    else
-	    	renderer.begin(ShapeType.Filled);
-	    renderer.setColor(Color.BLACK);
-	    renderer.rect(0, 0, getWidth(), getHeight());
-	    renderer.end();
+	   if(isLight) {
+	      if(!isPressed)
+	         renderer.begin(ShapeType.Line);
+	      else
+	         renderer.begin(ShapeType.Filled);
+	      }
+	   else {
+	      if(isPressed)
+            renderer.begin(ShapeType.Line);
+         else
+            renderer.begin(ShapeType.Filled);
+	      }
+	   
+	   renderer.setColor(Color.BLACK);
+	   renderer.rect(0, 0, getWidth(), getHeight());
+	   renderer.end();
 
-	    batch.begin();
+	   batch.begin();
 		
 		}
 	
 	public float getHertz() {
 		return hertz;
 		}
+	
+	public void switchTheme() {
+	   isLight = !isLight;
+	   }
 	}

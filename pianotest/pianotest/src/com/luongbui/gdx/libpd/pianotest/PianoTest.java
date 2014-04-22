@@ -62,4 +62,8 @@ public class PianoTest extends Game {
 	public GdxPD getAudioEngine() {
 		return audio;
 		}
+	
+	public void switchTheme() {
+	   mainScreen.switchTheme();
+	   }
 	}

@@ -72,7 +72,8 @@ public class MainActivity extends AndroidApplication implements PdListener {
 
    @Override
    public void receiveBang(String source) {
-      Log.d("receiveBang", source);
+      //Log.d("receiveBang", source);
+      game.switchTheme();
       }
 
    @Override
